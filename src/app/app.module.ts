@@ -9,6 +9,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { MaterializeModule } from 'angular2-materialize';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
@@ -28,6 +30,7 @@ import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    MaterializeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
