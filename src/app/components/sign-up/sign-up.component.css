@@ -1,0 +1,14 @@
+.sign-up-container {
+    margin-top: 25px;
+}
+
+.sign-up-text h4, span {
+  text-transform: uppercase;
+  font-weight: normal;
+  color: rgba(0,0,0,0.87);
+  text-align: center;
+}
+
+.page-footer {
+    background-color: #26A69A;
+}
