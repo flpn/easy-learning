@@ -20,7 +20,7 @@ import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
   declarations: [
     AppComponent,
     ...COMPONENTS,
-    ...PARTIAL_COMPONENTS
+    ...PARTIAL_COMPONENTS,
   ],
   imports: [
     BrowserModule,

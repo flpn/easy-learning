@@ -16,7 +16,7 @@
       <form class="login-form">
         <div class="row">
           <div class="input-field col s12 center">
-            <img src="../../assets/img/logo.png" alt="" class="circle responsive-img valign profile-image-login">
+            <img src="../../../assets/img/logo.png" alt="" class="circle responsive-img valign profile-image-login">
             <p class="center login-form-text">Easy Learning</p>
           </div>
         </div>
@@ -32,7 +32,7 @@
         
         <div class="row margin">
           <div class="input-field col s12">
-            <i class="material-icons prefix">vpn_key</i>
+            <i class="material-icons prefix">lock_outline</i>
             <input class="validate" min="4" id="password" name="password" type="password" [(ngModel)]="password">
             <label for="password">Senha</label>
           </div>
@@ -52,11 +52,11 @@
         </div>
 
         <div class="row">
-          <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="page-register.html">Crie uma conta!</a></p>
+          <div class="links input-field col s6 m6 l6">
+            <p (click)="goToSignUp()" class="margin medium-small"><a>Crie uma conta!</a></p>
           </div>
-          <div class="input-field col s6 m6 l6">
-              <p class="margin right-align medium-small"><a href="page-forgot-password.html">Esqueceu a senha?</a></p>
+          <div class="links input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a>Esqueceu a senha?</a></p>
           </div>          
         </div>
 
