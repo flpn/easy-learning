@@ -1,0 +1,18 @@
+#login-page {
+  background-color: gray;
+  height:100vh;
+}
+
+.profile-image-login {
+  width: 230px;
+}
+
+.login-form-text {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: normal;
+  color: rgba(0,0,0,0.87);
+}

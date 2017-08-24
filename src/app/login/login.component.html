@@ -1,3 +1,65 @@
-<p>
-  login works!
-</p>
+ <!-- Start Page Loading -->
+  <div id="loader-wrapper">
+      <div id="loader"></div>        
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+  </div>
+  <!-- End Page Loading -->
+
+
+
+  <div id="login-page" class="row">
+    <div class="col-md-4">
+    </div>
+
+    <div class="login-card col s4 z-depth-4 card-panel">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="../../assets/img/logo.png" alt="" class="circle responsive-img valign profile-image-login">
+            <p class="center login-form-text">Easy Learning</p>
+          </div>
+        </div>
+        
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input class="validate" id="email" name="email" type="email" [(ngModel)]="email">
+            <label for="email" class="center-align" data-error="Digite um formato de email válido"
+             data-success=":)">Email</label>
+          </div>
+        </div>
+        
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <input class="validate" min="4" id="password" name="password" type="password" [(ngModel)]="password">
+            <label for="password">Senha</label>
+          </div>
+        </div>
+        
+        <div class="row">          
+          <div class="col s12">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Lembrar-me</label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="input-field col s12">
+            <a (click)="login()" class="btn waves-effect waves-light col s12">Entrar</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="page-register.html">Crie uma conta!</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="page-forgot-password.html">Esqueceu a senha?</a></p>
+          </div>          
+        </div>
+
+      </form>
+    </div>
+  </div>
