@@ -12,7 +12,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 
 import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
 
