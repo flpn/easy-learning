@@ -1,5 +1,4 @@
 <div class="col-md-5">
-  
 </div> 
 
 <div class="sign-up-container row">   
@@ -11,16 +10,16 @@
 
     <div class="divider"></div>
     
-    <form class="col s12">
+    <form  class="col s12" #signUpForm="ngForm" id="signUpForm" name="signUpForm" method="post">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="name" type="text" class="validate">
+          <input id="name" name="name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.name">
           <label for="name">Nome</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>          
-          <input id="last-name" type="text" class="validate">
+          <input id="last-name" name="last-name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.lastname">
           <label for="last-name">Sobrenome</label>
         </div>
       </div>
@@ -28,7 +27,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>                    
-          <input id="email" type="email" class="validate">
+          <input id="email" name="email" type="email" class="validate" maxlength="50" required [(ngModel)]="newUser.email">
           <label for="email">Email</label>
         </div>
       </div>
@@ -36,18 +35,18 @@
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">lock_outline</i>          
-          <input id="first_name" type="text" class="validate">
-          <label for="first_name">Senha</label>
+          <input id="password" name="password" type="password" class="validate" minlength="6" maxlength="16" required [(ngModel)]="password">
+          <label for="password">Senha</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">lock_outline</i>                    
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Confirmar senha</label>
+          <input id="confirm-password" name="confirm-password" type="password" class="validate" minlength="6" maxlength="16" required [(ngModel)]="confirmPassword">
+          <label for="confirm-password">Confirmar senha</label>
         </div>
       </div>
 
-      <button class="col-md-offset-4 btn waves-effect waves-light" type="submit" name="action">Cadastrar
-        <i class="material-icons right">lock_outline</i>
+      <button [disabled]="!signUpForm.form.valid" class="col-md-offset-4 waves-effect waves-light btn-large btn-create" (click)="signUp()">CADASTRAR
+         <i class="material-icons right">send</i>
       </button>
     </form>
   </div>

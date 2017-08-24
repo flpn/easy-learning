@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private afAuth: AngularFireAuth) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.isLogged();
+   }
 
   login() {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
@@ -25,10 +27,22 @@ export class LoginComponent implements OnInit {
           this.goToSignUp();
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('ERROR' + error));
   }
+
+  isLogged() {
+    this.afAuth.authState.subscribe(user => {
+      if(user) {
+        this.goToHome();
+      }
+    });
+  } 
 
   goToSignUp() {
     this.router.navigate(['signUp']);
+  }
+
+  goToHome() {
+    this.router.navigate(['home']);
   }
 }
