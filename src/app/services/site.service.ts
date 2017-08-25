@@ -17,14 +17,4 @@ export class SiteService extends BaseService implements OnDestroy {
   constructor(private af: AngularFireDatabase, private afAuth: AngularFireAuth) {
     super(af, afAuth);
    }
-
-    getUserData(email: string): Promise<User> {
-        // return this.afDatabase.list('users', {
-        //     query: {
-        //         orderByChild: 'email',
-        //         equalTo: email
-        //     }
-        // })[0];
-        return null;
-    }
 }  

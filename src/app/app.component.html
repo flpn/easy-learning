@@ -17,11 +17,13 @@
 
 
 <ul id="slide-out" class="side-nav">
-  <li class="nav-title"><div class="userView">
-    <!--<a href="#!user"><img class="circle restaurant-image" src="{{getRestaurantURL()}}"></a>-->
-    <a href="#!name"><span class="white-text name">User name</span></a>
-    <a href="#!email"><span class="white-text email">User email</span></a>
-  </div></li>
+  <li class="nav-title">
+    <div *ngIf="!isLoading" class="userView">
+      <a href="#!user"><img class="circle restaurant-image" src="{{ currentUser.profileImage }}"></a>
+      <a href="#!name"><span class="white-text name">{{ currentUser.name }}</span></a>
+      <a href="#!email"><span class="white-text email">{{ currentUser.email }}</span></a>
+    </div>
+  </li>
   <li><a (click)="closeNav()" [routerLink]="['/home']"><i class="material-icons">info_outline</i>Página principal</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader"><i class="material-icons">settings</i> Opções de Grupos</a></li>

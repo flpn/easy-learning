@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { PAGES } from './utils/constants';
+import { SiteService } from './services/site.service';
+
+import { PAGES, ENTITIES } from './utils/constants';
 
 import { User } from './model/user';
 
@@ -12,14 +14,20 @@ declare var $: any;
 
 @Component({
   selector: 'app-root',
+  providers: [SiteService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit {
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) { }
+  currentUser: User;
+  isLoading: boolean;
+
+  constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase, 
+    private siteService: SiteService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.isLogged();
     this.initTemplate();
   }
@@ -27,13 +35,16 @@ export class AppComponent  implements OnInit {
   isLogged() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.loadUserData();
+        this.loadUserData(user.email);
       }
     });
   }
 
-  loadUserData() {
-
+  loadUserData(email: string) {
+    this.siteService.retrieve<User>(ENTITIES.user, 'email', email).then(users => {
+      this.currentUser = users[0];
+      this.isLoading = false;
+    });
   }
 
   initTemplate() {
