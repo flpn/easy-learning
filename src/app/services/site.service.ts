@@ -1,4 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from 'angularfire2/auth'
@@ -8,19 +9,22 @@ import { ENTITIES } from '../utils/constants';
 
 import { BaseService } from './base.service';
 
+import { User } from '../model/user';
+
 @Injectable()
-export class SiteService extends BaseService implements OnDestroy{
+export class SiteService extends BaseService implements OnDestroy {
 
-    constructor(private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth) {
-        super(afDatabase, afAuth);
-    }
+  constructor(private af: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    super(af, afAuth);
+   }
 
-    getUserData(email: string) {
-        return this.afDatabase.list('users', {
-            query: {
-                orderByChild: 'email',
-                equalTo: email
-            }
-        })[0];
+    getUserData(email: string): Promise<User> {
+        // return this.afDatabase.list('users', {
+        //     query: {
+        //         orderByChild: 'email',
+        //         equalTo: email
+        //     }
+        // })[0];
+        return null;
     }
 }  

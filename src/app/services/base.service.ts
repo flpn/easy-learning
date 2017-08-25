@@ -8,20 +8,20 @@ export class BaseService {
 
     subscriptions: any[] = [];
 
-    constructor(private afDatabase: AngularFireDatabase, private afAuth :AngularFireAuth) { }
+    constructor(private angularFire: AngularFireDatabase, private angularFireAuth :AngularFireAuth) { }
 
     ngOnDestroy() {
         this.subscriptions.forEach(s => s.unsubscribe());
     }
 
     insert<T>(entity: string, obj: T):string {
-      return this.afDatabase.list(entity).push(obj).key;
+      return this.angularFire.list(entity).push(obj).key;
     }
 
     remove<T>(entity: string, key: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
 
-            this.afDatabase.list(entity).remove(key)
+            this.angularFire.list(entity).remove(key)
                 .then(() => resolve())
                 .catch(error => reject(error))
         });
@@ -29,7 +29,7 @@ export class BaseService {
 
     retrieve<T>(entity: string, property: string, value: any): Promise<T[]> {
         return new Promise<T[]>((resolve, reject) => {
-            let subscription = this.afDatabase.list(entity, {
+            let subscription = this.angularFire.list(entity, {
                 query: {
                     orderByChild: property,
                     equalTo: value
@@ -46,7 +46,7 @@ export class BaseService {
 
     get<T>(entity: string, property: string, value: any): Promise<T> {
         return new Promise<T>((resolve, reject) => {
-            let subscription = this.afDatabase.list(entity, {
+            let subscription = this.angularFire.list(entity, {
                 query: {
                     orderByChild: property,
                     equalTo: value
@@ -63,7 +63,7 @@ export class BaseService {
 
     find<T>(entity: string, key: string): Promise<T> {
         return new Promise<T>((resolve, reject) => {
-            let subscription = this.afDatabase.object(`/${entity}/${key}`)
+            let subscription = this.angularFire.object(`/${entity}/${key}`)
                 .subscribe(entity => resolve(entity))
 
             this.subscriptions.push(subscription);
@@ -71,11 +71,11 @@ export class BaseService {
     }
 
     update<T>(entity: string, key: string, data: any) {
-        return this.afDatabase.list(entity).update(key, data);
+        return this.angularFire.list(entity).update(key, data);
     }
 
     getObservable<T>(entity: string, property: string, value: any): Observable<T[]> {
-        return this.afDatabase.list(entity, {
+        return this.angularFire.list(entity, {
             query: {
                 orderByChild: property,
                 equalTo: value
@@ -85,7 +85,7 @@ export class BaseService {
 
     getCurrentUserEmail(): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            this.afAuth.authState.subscribe(user => {
+            this.angularFireAuth.authState.subscribe(user => {
                 if (user != null) {
                     resolve(user.email);
                 } else {

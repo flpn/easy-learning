@@ -25,11 +25,11 @@ export class AppComponent  implements OnInit {
   }
 
   isLogged() {
-    console.log(this.afAuth.authState.subscribe(user => {
+    this.afAuth.authState.subscribe(user => {
       if (user) {
         this.loadUserData();
       }
-    }));
+    });
   }
 
   loadUserData() {
