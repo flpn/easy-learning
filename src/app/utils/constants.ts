@@ -2,7 +2,8 @@ export const PAGES =  {
     default: '',
     login: '/login',
     signUp: '/signUp',
-    home: '/home'
+    home: '/home',
+    forumHome: '/forumHome'
 }
 
 export const NO_AUTHORIZED_PAGES = {
