@@ -3,26 +3,21 @@ import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { SiteService } from '../../services/site.service';
+
 @Component({
   selector: 'app-home',
+  providers: [SiteService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) { }
+  constructor(private siteService: SiteService, private router: Router, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.notLogged();
+    this.siteService.notLogged();
   }
-
-  notLogged() {
-    this.afAuth.authState.subscribe(user => {
-      if(!user) {
-        this.goToLogin();
-      }
-    });
-  } 
 
   goToLogin() {
     this.router.navigate(['login']);

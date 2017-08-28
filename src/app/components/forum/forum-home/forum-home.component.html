@@ -1,3 +1,12 @@
 <div class="forum-home-container padd-on-top">
-  <p>Fórum home em construção...</p>
+  <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn">Faça uma pergunta</a>
+  
+  <ul class="collection with-header">
+    <li class="collection-header"><h5>Perguntas recentes</h5></li>
+    <li *ngFor="let question of latestQuestions | async" class="collection-item">
+      <div>
+        <a href="javascript:void(0)">{{ question.score }}  - {{ question.text }}</a>
+      </div>
+    </li>
+  </ul>
 </div>

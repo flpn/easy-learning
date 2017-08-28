@@ -3,7 +3,8 @@ export const PAGES =  {
     login: '/login',
     signUp: '/signUp',
     home: '/home',
-    forumHome: '/forumHome'
+    forumHome: '/forumHome',
+    createQuestion: '/createQuestion'
 }
 
 export const NO_AUTHORIZED_PAGES = {
@@ -12,5 +13,6 @@ export const NO_AUTHORIZED_PAGES = {
 }
 
 export const ENTITIES = {
-    user: '/users'
+    user: '/users',
+    question: '/questions'
 }
