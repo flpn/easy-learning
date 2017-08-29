@@ -1,10 +1,11 @@
 import { ForumPost } from './forum-post';
+import { Answer } from './answer';
 
 export class Question extends ForumPost{
     title: string;
     tags: string;
     viewed: number;
-    answers: Array<Question>;
+    answers: Array<Answer>;
 
     constructor() {
         super();

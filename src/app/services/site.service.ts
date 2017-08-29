@@ -23,6 +23,10 @@ export class SiteService extends BaseService implements OnDestroy {
      return this.insert<Question>(ENTITIES.question, question)
    }
 
+   createAnswer(question: Question) {
+     this.update<Question>(ENTITIES.question, question.$key, question);
+   }
+
    notLogged() {
     this.afAuth.authState.subscribe(user => {
       if(!user) {

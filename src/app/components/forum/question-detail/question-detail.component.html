@@ -1,6 +1,59 @@
 <div class="question-detail-container padd-on-top">
-  <div *ngIf="!isLoading">
-    <p>{{ currentQuestion.title }}</p>
-    <p>{{ currentQuestion.text }}</p>
+  <div *ngIf="!isLoading" class="card-panel">
+
+    <div class="question-detail-info">
+      <p class="question-title">{{ currentQuestion.title }}</p>
+      <div class="divider"></div>
+
+      <div class="row col s12">
+        <div class="col s1">
+          {{ currentQuestion.score }}
+        </div>
+        <div class="col s11">
+          <p>{{ currentQuestion.text }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="col offset-s1">{{ currentQuestion.tags }}</p>
+      </div>
+
+      <div class="divider"></div>      
+      <div class="row col s12">
+        <div class="user-info col offset-s10">
+          <span class="question-date">perguntado em {{ currentQuestion.published | date: 'dd/MM/yyyy' }}</span>
+          <!--<img class="user-image" src="{{ questionUser.profileImage }}">-->
+          <!--<span>{{ questionUser.name }}</span>-->
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="!currentQuestion.answers" class="question-title">0 respostas</p>    
+    <div *ngIf="currentQuestion.answers" class="question-detail-answers">
+      <p class="question-title">{{ currentQuestion.answers.length }} respostas</p>
+      
+      <div class="answers">
+        <ul>
+          <li *ngFor="let answer of currentQuestion.answers">
+            <div>
+              {{ answer.text }}
+              <div class="divider"></div>                      
+            </div>  
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form #questionDetailForm="ngForm" class="col-s12" id="questionDetailForm" name="questionDetailForm" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
+          <label for="answer">Sua resposta</label>
+        </div>
+      </div>
+
+      <button [disabled]="!questionDetailForm.form.valid" class="btn waves-effect waves-light"
+        type="submit" name="action" (click)="createAnswer()">Poste sua resposta</button>
+    </form>
   </div>
 </div>
