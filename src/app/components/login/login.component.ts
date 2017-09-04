@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
+declare var $: any;
+declare var Materialize: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,11 +26,10 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
       .then((result) => {
         if(result) {
-          console.log('login successible');
           this.goToSignUp();
         }
       })
-      .catch((error) => console.log('ERROR' + error));
+      .catch((error) => this.toastMessage('Email e/ou senha inválidos'));     
   }
 
   isLogged() {
@@ -37,6 +39,10 @@ export class LoginComponent implements OnInit {
       }
     });
   } 
+
+  toastMessage(message: String) {
+    Materialize.toast(message, 3000, 'rounded');
+  }
 
   goToSignUp() {
     this.router.navigate(['signUp']);
