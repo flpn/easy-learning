@@ -15,12 +15,12 @@
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="name" name="name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.name">
-          <label for="name">Nome</label>
+          <label for="name" data-error="O nome deve ter no mínimo 2 caracteres">Nome</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>          
           <input id="last-name" name="last-name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.lastname">
-          <label for="last-name">Sobrenome</label>
+          <label for="last-name" data-error="O sobrenome deve ter no mínimo 2 caracteres">Sobrenome</label>
         </div>
       </div>
 
@@ -28,19 +28,19 @@
         <div class="input-field col s12">
           <i class="material-icons prefix">email</i>                    
           <input id="email" name="email" type="email" class="validate" maxlength="50" required [(ngModel)]="newUser.email">
-          <label for="email">Email</label>
+          <label for="email" data-error="Digite um formato de email válido">Email</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">lock_outline</i>          
-          <input id="password" name="password" type="password" class="validate" minlength="6" maxlength="16" required [(ngModel)]="password">
-          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="password">
+          <label for="password" data-error="A senha deve conter entre 6 e 20 caracteres">Senha</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">lock_outline</i>                    
-          <input id="confirm-password" name="confirm-password" type="password" class="validate" minlength="6" maxlength="16" required [(ngModel)]="confirmPassword">
+          <input id="confirm-password" name="confirm-password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="confirmPassword">
           <label for="confirm-password">Confirmar senha</label>
         </div>
       </div>

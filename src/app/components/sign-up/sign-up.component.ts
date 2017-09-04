@@ -6,6 +6,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 import { User } from '../../model/user';
 
+declare var $: any;
+declare var Materialize: any;
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -27,18 +30,23 @@ export class SignUpComponent implements OnInit {
    }
 
   signUp() {
-    this.afAuth.auth.createUserWithEmailAndPassword(this.newUser.email, this.password)
-      .then(result => {
-        if(result) {
-          console.log(result);
-          this.newUser.uid = result.uid;
-          this.pushUser();
-          this.goToHome();
-        }
-      })
-      .catch(error => {
-        console.log('sign up error' + error);
-      });
+    if(this.passwordMatch()) {
+      this.afAuth.auth.createUserWithEmailAndPassword(this.newUser.email, this.password)
+        .then(result => {
+          if(result) {
+            this.newUser.uid = result.uid;
+            this.pushUser();
+            this.goToHome();
+          }
+        })
+        .catch(error => {
+          this.toastMessage('Um erro ocorreu, tente novamente');
+        });
+      }
+      else {
+        this.toastMessage('Senha e confirmação de senha devem ser iguais');
+        this.resetPasswordFields();
+      }
   }
 
   pushUser() {
@@ -46,9 +54,16 @@ export class SignUpComponent implements OnInit {
   }
 
   passwordMatch() {
-    return this.password && this.confirmPassword &&
-           this.password === this.confirmPassword &&
-            this.confirmPassword.length > 0;
+    return this.password === this.confirmPassword;
+  }
+
+  toastMessage(message: String) {
+    Materialize.toast(message, 3000, 'rounded');
+  }
+
+  resetPasswordFields() {
+      this.password = '';
+      this.confirmPassword = '';
   }
 
   isLogged() {
