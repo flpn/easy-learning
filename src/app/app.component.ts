@@ -29,7 +29,6 @@ export class AppComponent  implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.isLogged();
-    this.initTemplate();
   }
 
   isLogged() {
@@ -43,6 +42,7 @@ export class AppComponent  implements OnInit {
   loadUserData(email: string) {
     this.siteService.retrieve<User>(ENTITIES.user, 'email', email).then(users => {
       this.currentUser = users[0];
+      this.initTemplate();
       this.isLoading = false;
     });
   }
@@ -73,6 +73,7 @@ export class AppComponent  implements OnInit {
   }
 
   logout() {
+    this.isLoading = true;
     this.afAuth.auth.signOut()
       .then(() => this.goToLogin());
   }

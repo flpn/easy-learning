@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+
+import { ENTITIES } from '../../utils/constants';
+
+import { User } from '../../model/user';
 
 declare var $: any;
 declare var Materialize: any;
@@ -16,7 +22,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) { }
+  constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) { }
 
   ngOnInit() {
     this.isLogged();
@@ -26,10 +32,48 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
       .then((result) => {
         if(result) {
-          this.goToSignUp();
+          this.goToHome();
         }
       })
       .catch((error) => this.toastMessage('Email e/ou senha inválidos'));     
+  }
+
+  loginWithGoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(result => {
+        if(result) {
+          this.verifyUser(result.user);
+        }
+      })
+      .catch((error) => this.toastMessage('Um erro ocorreu, tente novamente'));     
+      
+  }
+  
+  verifyUser(user: any) {
+    this.afDatabase.list(ENTITIES.user, {
+      query: {
+        orderByChild: 'email',
+        equalTo: user.email
+      }
+    })
+    .subscribe(list => {
+      if (list.length === 0) 
+        this.pushUser(user);
+      
+      this.goToHome();      
+    });
+  }
+
+  pushUser(user: any) {
+    let newUser = new User();
+    newUser.email = user.email;
+    newUser.profileImage = user.photoURL;
+    newUser.email = user.email;
+    newUser.uid = user.uid;
+    newUser.name = user.displayName.split(' ')[0];
+    newUser.lastname = user.displayName.split(' ')[1];
+
+    this.afDatabase.list(ENTITIES.user).push(newUser);
   }
 
   isLogged() {
