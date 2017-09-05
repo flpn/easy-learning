@@ -65,6 +65,11 @@ export class LoginComponent implements OnInit {
   }
 
   pushUser(user: any) {
+    this.afDatabase.list(ENTITIES.user)
+      .push(this.getUserInfo(user));
+  }
+
+  getUserInfo(user: any) {
     let newUser = new User();
     newUser.email = user.email;
     newUser.profileImage = user.photoURL;
@@ -73,7 +78,7 @@ export class LoginComponent implements OnInit {
     newUser.name = user.displayName.split(' ')[0];
     newUser.lastname = user.displayName.split(' ')[1];
 
-    this.afDatabase.list(ENTITIES.user).push(newUser);
+    return newUser;
   }
 
   isLogged() {
