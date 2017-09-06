@@ -38,6 +38,16 @@ export class LoginComponent implements OnInit {
       .catch((error) => this.toastMessage('Email e/ou senha inválidos'));     
   }
 
+  loginWithFacebook(){
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .then(result => {
+      if(result) {
+        this.verifyUser(result.user);
+      }
+    })
+    .catch((error) => this.toastMessage('Um erro ocorreu, tente novamente')); 
+  }
+
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(result => {
