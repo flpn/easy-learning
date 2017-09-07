@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+
+import { User } from '../../model/user';
 
 declare var $: any;
 declare var Materialize: any;
@@ -15,8 +20,12 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
+  user: User;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) { }
+  constructor(private router: Router, private afAuth: AngularFireAuth,
+              private afDatabase: AngularFireDatabase) {
+    this.user = new User;
+   }
 
   ngOnInit() {
     this.isLogged();
@@ -50,5 +59,20 @@ export class LoginComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(['home']);
+  }
+
+  loginFacebook(){
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()) 
+        .then(res => {
+            this.user.name = res.user.displayName;
+            this.user.email = res.user.email;
+            this.user.profileImage = res.user.photoURL;
+            this.user.uid = res.user.uid;
+            this.afDatabase.list('users').push(this.user);
+        });
+  }
+
+  logoutFacebook(){
+    this.afAuth.auth.signOut()
   }
 }

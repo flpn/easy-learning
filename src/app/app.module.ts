@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MaterializeModule } from 'angular2-materialize';
 
@@ -31,7 +33,7 @@ import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
     AngularFireAuthModule,
     MaterializeModule
   ],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

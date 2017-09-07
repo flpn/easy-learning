@@ -21,7 +21,8 @@ export class SignUpComponent implements OnInit {
   password: string;
   confirmPassword: string;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) { 
+  constructor(private router: Router, private afAuth: AngularFireAuth,
+     private afDatabase: AngularFireDatabase) { 
     this.newUser = new User();
   }
 
