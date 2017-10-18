@@ -22,6 +22,7 @@ export class QuestionDetailComponent implements OnInit {
   currentQuestion: Question;
   answer: Answer;
   isLoading: boolean;
+  answerAux: Answer; 
 
   constructor(private router: ActivatedRoute, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
     this.answer = new Answer();
@@ -63,5 +64,31 @@ export class QuestionDetailComponent implements OnInit {
     this.siteService.get(ENTITIES.user, 'uid', uid).then(user => {
       return user;
     })
+  }
+
+  incrementScoreQuestion() {
+    this.currentQuestion.score += 1;
+    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
+  }
+
+  decrementScoreQuestion() {
+    this.currentQuestion.score -= 1;
+    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
+  }
+
+  incrementScoreAnswer(answer: Answer) {
+    this.answerAux = this.answer;
+    this.answer = answer;
+    this.answer.score += 1;
+    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
+    this.answer = this.answerAux;
+  }
+
+  decrementScoreAnswer(answer: Answer) {
+    this.answerAux = this.answer;
+    this.answer = answer;
+    this.answer.score -= 1;
+    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
+    this.answer = this.answerAux;
   }
 }
