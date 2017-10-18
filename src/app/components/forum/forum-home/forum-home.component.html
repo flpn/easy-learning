@@ -5,7 +5,13 @@
       <div class="row">
         <h5 class="col-md-9">Perguntas recentes </h5>
         <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn">Faça uma pergunta</a>
-        
+       
+        <!-- busca -->
+        <input  [(ngModel)]="searchQuestions" type="text" name="search">
+        <a (click)="searchQuestion()" class="waves-effect waves-light btn">Buscar</a>
+        <!-- <input type="submit" value="Submit"> -->
+
+
       </div>
       </li>
     <li *ngFor="let question of latestQuestions | async" class="collection-item">
