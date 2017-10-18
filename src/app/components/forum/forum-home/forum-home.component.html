@@ -1,11 +1,31 @@
 <div class="forum-home-container padd-on-top">
-  <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn">Faça uma pergunta</a>
   
   <ul class="collection with-header">
-    <li class="collection-header"><h5>Perguntas recentes</h5></li>
+    <li class="collection-header">
+      <div class="row">
+        <h5 class="col-md-9">Perguntas recentes </h5>
+        <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn">Faça uma pergunta</a>
+        
+      </div>
+      </li>
     <li *ngFor="let question of latestQuestions | async" class="collection-item">
       <div>
-        <a [routerLink]="['/question', question.$key]">{{ question.score }}  - {{ question.text }}</a>
+        <a [routerLink]="['/question', question.$key]">{{ question.text }}</a>
+      </div>
+
+      <div class="row">
+        <div class="inline">
+          <label for="">{{ question.score }}</label>
+          <label for="">votos</label>
+        </div>
+        <div class="inline">
+          <label for="">0</label>
+          <label for="">respostas</label>
+        </div>
+        <div class="inline">
+          <label for="">{{ question.viewed }}</label>
+          <label for="">acessos</label>
+        </div>
       </div>
     </li>
   </ul>
