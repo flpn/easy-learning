@@ -66,28 +66,15 @@ export class QuestionDetailComponent implements OnInit {
     })
   }
 
-  incrementScoreQuestion() {
-    this.currentQuestion.score += 1;
+  setScoreQuestion(option: number) {
+    this.currentQuestion.score += option;
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
   }
 
-  decrementScoreQuestion() {
-    this.currentQuestion.score -= 1;
-    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
-  }
-
-  incrementScoreAnswer(answer: Answer) {
+  setScoreAnswer(answer: Answer, option: number){
     this.answerAux = this.answer;
     this.answer = answer;
-    this.answer.score += 1;
-    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
-    this.answer = this.answerAux;
-  }
-
-  decrementScoreAnswer(answer: Answer) {
-    this.answerAux = this.answer;
-    this.answer = answer;
-    this.answer.score -= 1;
+    this.answer.score += option;
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
     this.answer = this.answerAux;
   }
