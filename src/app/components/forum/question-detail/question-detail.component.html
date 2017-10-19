@@ -7,9 +7,9 @@
 
       <div class="row col s12">
         <div class="col s1">
-          <button type="button" class="button" aria-pressed="true" (click)="incrementScoreQuestion()">Like</button>
+          <button type="button" class="button" aria-pressed="true" (click)="setScoreQuestion(1)">Like</button>
           {{ currentQuestion.score }}
-          <button type="button" class="button-red"(click)="decrementScoreQuestion()">Dislike</button>
+          <button type="button" class="button-red"(click)="setScoreQuestion(-1)">Dislike</button>
         </div>
         <div class="col s11">
           <p>{{ currentQuestion.text }}</p>
@@ -38,9 +38,9 @@
         <ul>
           <li *ngFor="let answer of currentQuestion.answers">
             <div>
-                <button type="button" class="button" (click)="incrementScoreAnswer(answer)">Like</button>
+                <button type="button" class="button" (click)="setScoreAnswer(answer, 1)">Like</button>
                 {{ answer.score}}
-                <button type="button" class="button-red-answer"(click)="decrementScoreAnswer(answer)">Dislike</button>
+                <button type="button" class="button-red-answer"(click)="setScoreAnswer(answer, -1)">Dislike</button>
                 {{ answer.text }}
               <div class="divider"></div>                      
             </div>  
