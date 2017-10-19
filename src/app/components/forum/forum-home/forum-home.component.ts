@@ -27,17 +27,33 @@ export class ForumHomeComponent implements OnInit {
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.latestQuestions = this.db.list(ENTITIES.question);
+    this.initializeList();
   }
 
+  initializeList(){
+    this.latestQuestions = this.db.list(ENTITIES.question, {
+      query: {
+        orderByChild: 'score'
+      }
+    }).map((array) => array.reverse())
+  }
 
   goToCreateQuestion() {
     this.router.navigate([PAGES.createQuestion]);
   }
 
   searchQuestion(){
-      this.latestQuestions = this.db.list(ENTITIES.question)
-                .map(itens => itens.filter(item => item.tags === this.searchQuestions))
+    if(this.searchQuestions === ""){
+      this.initializeList()
+    }else{
+      this.latestQuestions = this.db.list(ENTITIES.question, {
+        query: {
+          orderByChild: 'score'
+        }
+      }).map(itens => itens.filter(item => item.tags.toUpperCase().includes(this.searchQuestions.toUpperCase()) 
+                || item.title.toUpperCase().includes(this.searchQuestions.toUpperCase())))
+        .map((array) => array.reverse())
+    }
   }
 
 }
