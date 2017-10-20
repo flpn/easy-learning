@@ -56,4 +56,11 @@ export class ForumHomeComponent implements OnInit {
     }
   }
 
+  isGoodQuestion(votes: number) {
+    return votes >= 10;
+  }
+
+  isBadQuestion(votes: number) {
+    return votes <= -3;
+  }
 }
