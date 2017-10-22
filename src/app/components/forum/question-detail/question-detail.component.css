@@ -1,5 +1,8 @@
-.question-detail-info {
-    /*width: 90%;*/
+.question-detail-container {
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    background-color: #E1E8E3;
 }
 
 .question-title {
@@ -46,4 +49,18 @@
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+}
+
+.thumbs-green {
+    font-size: 20px;
+    color: green;    
+}
+
+.thumbs-red {
+    font-size: 20px;    
+    color: red;
+}
+
+.green {
+    color: green;
 }

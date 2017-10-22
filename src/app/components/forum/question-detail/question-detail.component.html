@@ -6,18 +6,22 @@
       <div class="divider"></div>
 
       <div class="row col s12">
-        <div class="col s1">
-          <button type="button" class="button" aria-pressed="true" (click)="setScoreQuestion(1)">Like</button>
-          {{ currentQuestion.score }}
-          <button type="button" class="button-red"(click)="setScoreQuestion(-1)">Dislike</button>
+        <div class="col s2">
+          
+          <div>
+            <label class="thumbs-green" for="" (click)="setScoreQuestion(1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
+            {{ currentQuestion.score }}
+            <label class="thumbs-red" for="" (click)="setScoreQuestion(-1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>
+          </div>
+
         </div>
-        <div class="col s11">
+        <div class="col s10">
           <p>{{ currentQuestion.text }}</p>
         </div>
       </div>
 
       <div class="row">
-        <p class="col offset-s1">{{ currentQuestion.tags }}</p>
+        <p class="col offset-s2">{{ currentQuestion.tags }}</p>
       </div>
 
       <div class="divider"></div>      
@@ -38,9 +42,9 @@
         <ul>
           <li *ngFor="let answer of currentQuestion.answers">
             <div>
-                <button type="button" class="button" (click)="setScoreAnswer(answer, 1)">Like</button>
-                {{ answer.score}}
-                <button type="button" class="button-red-answer"(click)="setScoreAnswer(answer, -1)">Dislike</button>
+                <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
+                  {{ answer.score}}
+                <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>
                 {{ answer.text }}
               <div class="divider"></div>                      
             </div>  
