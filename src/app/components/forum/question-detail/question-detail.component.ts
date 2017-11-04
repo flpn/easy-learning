@@ -20,12 +20,15 @@ import { Answer } from '../../../model/answer';
 export class QuestionDetailComponent implements OnInit {
 
   currentQuestion: Question;
+  show:boolean;
   answer: Answer;
   isLoading: boolean;
   answerAux: Answer; 
+  index: number;
 
   constructor(private router: ActivatedRoute, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
     this.answer = new Answer();
+    this.show = false;
   }
   
   ngOnInit() {
@@ -78,4 +81,40 @@ export class QuestionDetailComponent implements OnInit {
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
     this.answer = this.answerAux;
   }
+
+  checkUser(userKey: string): boolean{
+    return userKey === this.auth.auth.currentUser.uid
+  }
+
+  updateQuestion() {
+    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion)
+  }
+
+  removeAnswer(answer: Answer){
+    var index = this.currentQuestion.answers.indexOf(answer);
+    this.currentQuestion.answers.splice(index, 1);
+    this.updateQuestion();
+  }
+
+  edit(answer: Answer){
+    this.index = this.currentQuestion.answers.indexOf(answer);
+    if(this.show){
+      this.show = false;
+    }else{
+      this.show = true;
+    }
+  }
+
+  updateAnswer(answer: Answer){
+    this.currentQuestion.answers[this.index] = answer;
+    this.updateQuestion();
+    this.show = false
+    // console.log(this.index);
+  }
+
+  teste(answer: Answer){
+    var index = this.currentQuestion.answers.indexOf(answer);
+    // this.currentQuestion.answers[index].text = 
+  }
+
 }
