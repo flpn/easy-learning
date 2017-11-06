@@ -108,13 +108,7 @@ export class QuestionDetailComponent implements OnInit {
   updateAnswer(answer: Answer){
     this.currentQuestion.answers[this.index] = answer;
     this.updateQuestion();
-    this.show = false
-    // console.log(this.index);
-  }
-
-  teste(answer: Answer){
-    var index = this.currentQuestion.answers.indexOf(answer);
-    // this.currentQuestion.answers[index].text = 
+    this.show = false    
   }
 
 }

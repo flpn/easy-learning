@@ -75,12 +75,13 @@
       
       <div class="answers">
         <ul>
-          <li *ngFor="let answer of currentQuestion.answers">
+          <li *ngFor="let answer of currentQuestion.answers; let i = index" [attr.data-index]="i" >
             <div>
                 <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
                   {{ answer.score}}
                 <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>
                 {{ answer.text }}
+                
                 <div *ngIf="checkUser(answer.user)">
                   <button type="button" class="material-icons" 
                     style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
@@ -88,13 +89,13 @@
                     <button type="button" 
                       (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
 
-                <div *ngIf="show">
-                    <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
-                    <button type="button" class="btn waves-effect waves-light"
-                    (click)="updateAnswer(answer)">Atualizar</button>
+                    <div *ngIf="(i === index) && show">
+                        <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
+                        <button type="button" class="btn waves-effect waves-light"
+                        (click)="updateAnswer(answer, index)">Atualizar</button>
+                    </div>
                 </div>
 
-                </div>
               <div class="divider"></div>                      
             </div>  
           </li>
