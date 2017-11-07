@@ -111,4 +111,12 @@ export class QuestionDetailComponent implements OnInit {
     this.show = false    
   }
 
+  bestAnswer(answer: Answer) {
+    this.currentQuestion.bestAnswer = answer;
+    this.updateQuestion();
+  }
+
+  hideBestAnswer(answer: Answer) {
+    return answer.text !== this.currentQuestion.bestAnswer.text;
+  }
 }

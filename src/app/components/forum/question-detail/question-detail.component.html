@@ -69,6 +69,14 @@
       </div>
     </div>
 
+    <!-- TODO -->
+    <div class="best-answer" *ngIf="currentQuestion.bestAnswer">
+      <p class="question-title">Melhor resposta</p>
+      
+      <h6>{{ currentQuestion.bestAnswer.text }}</h6>
+      <div class="divider"></div>            
+    </div>
+
     <p *ngIf="!currentQuestion.answers" class="question-title">0 respostas</p>    
     <div *ngIf="currentQuestion.answers" class="question-detail-answers">
       <p class="question-title">{{ currentQuestion.answers.length }} respostas</p>
@@ -76,7 +84,10 @@
       <div class="answers">
         <ul>
           <li *ngFor="let answer of currentQuestion.answers; let i = index" [attr.data-index]="i" >
-            <div>
+            <div *ngIf="hideBestAnswer(answer)">
+              
+                <i *ngIf="checkUser(currentQuestion.user)" class="fa fa-check" (click)="bestAnswer(answer)" aria-hidden="true"></i>
+                
                 <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
                   {{ answer.score}}
                 <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>

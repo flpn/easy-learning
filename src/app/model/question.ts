@@ -6,6 +6,7 @@ export class Question extends ForumPost{
     tags: string;
     viewed: number;
     answers: Array<Answer>;
+    bestAnswer: Answer;
 
     constructor() {
         super();
