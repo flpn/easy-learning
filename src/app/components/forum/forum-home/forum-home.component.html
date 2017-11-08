@@ -5,12 +5,29 @@
       <div class="row">
         <h5 class="col-md-9">Perguntas recentes </h5>
         <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn under right">Faça uma pergunta</a>
-       
+        
         <!-- busca -->
-        <input placeholder="Faça sua busca aqui..."  [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
-
+        <form #findQuestionForm="ngForm" >
+        <input placeholder="Faça sua busca aqui..." required [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
+      </form>
+        <form>
+            <div>
+              <input type="radio" id="contactChoice1"
+               name="contact" checked = "checked" (click)="initializeList()">
+               <label for="contactChoice1">Views</label>
+          
+              <input type="radio" id="contactChoice2"
+               name="contact" (click)="searchQuestionDate()">
+               <label for="contactChoice2">Data</label>
+          
+              <input type="radio" id="contactChoice3"
+               name="contact" (click)="searchQuestion()">
+              <label for="contactChoice3">Tag/Name</label>
+            </div>
+          </form>
+          <!--<a (click)="initializeList()" class="waves-effect waves-light btn under right">Resetar Busca</a>-->
       </div>
-      </li>
+    </li>
     <li *ngFor="let question of latestQuestions | async" class="collection-item">
       <div>
         <a class="question-title" [routerLink]="['/question', question.$key]">{{ question.text }}</a>
