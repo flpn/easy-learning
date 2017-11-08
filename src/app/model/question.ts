@@ -7,6 +7,7 @@ export class Question extends ForumPost{
     viewed: number;
     answers: Array<Answer>;
     bestAnswer: Answer;
+    voteLog: Map<string, number>;
 
     constructor() {
         super();

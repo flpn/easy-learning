@@ -70,7 +70,28 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   setScoreQuestion(option: number) {
-    this.currentQuestion.score += option;
+    if (!this.currentQuestion.voteLog) {
+      this.currentQuestion.voteLog = new Map<string, number>();
+      
+    }
+
+    let userUID = this.auth.auth.currentUser.uid;
+    let scoreMarked = this.currentQuestion.voteLog.get(userUID);
+    
+    if (scoreMarked) {
+      if ((scoreMarked + option) <= 1 && (scoreMarked + option) >= -1) {
+        this.currentQuestion.voteLog.set(userUID, (scoreMarked + option)) 
+        this.currentQuestion.score += option;
+      }
+    }
+    else {
+      this.currentQuestion.voteLog.set(userUID, option);
+      this.currentQuestion.score += option;      
+    }
+
+    scoreMarked = this.currentQuestion.voteLog.get(userUID);
+    console.log(scoreMarked);
+    
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
   }
 
