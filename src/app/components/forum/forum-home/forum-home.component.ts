@@ -23,6 +23,7 @@ export class ForumHomeComponent implements OnInit {
 
   latestQuestions: Observable<any>;
   searchQuestions: string
+  str: string
 
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
@@ -51,7 +52,9 @@ export class ForumHomeComponent implements OnInit {
           orderByChild: 'score'
         }
       }).map(itens => itens.filter(item => item.tags.toUpperCase().includes(this.searchQuestions.toUpperCase()) 
-                || item.title.toUpperCase().includes(this.searchQuestions.toUpperCase())))
+                || item.title.toUpperCase().includes(this.searchQuestions.toUpperCase())
+                || item.text.toUpperCase().includes(this.searchQuestions.toUpperCase())
+              ))
         .map((array) => array.reverse())
     }
   }
@@ -62,5 +65,13 @@ export class ForumHomeComponent implements OnInit {
 
   isBadQuestion(votes: number) {
     return votes <= -3;
+  }
+
+  searchQuestionDate(){
+    this.latestQuestions = this.db.list(ENTITIES.question, {
+      query: {
+        orderByChild: 'published'
+      }
+    }).map((array) => array.reverse())
   }
 }

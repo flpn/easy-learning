@@ -7,9 +7,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { SiteService } from '../../../services/site.service';
 
 import { ENTITIES } from '../../../utils/constants';
+import { SCORE } from '../../../utils/constants';
 
 import { Question } from '../../../model/question';
 import { Answer } from '../../../model/answer';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-question-detail',
@@ -25,6 +27,7 @@ export class QuestionDetailComponent implements OnInit {
   isLoading: boolean;
   answerAux: Answer; 
   index: number;
+  currentUser: User;
 
   constructor(private router: ActivatedRoute, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
     this.answer = new Answer();
@@ -59,8 +62,11 @@ export class QuestionDetailComponent implements OnInit {
     
     this.currentQuestion.answers.push(this.answer);
     this.siteService.createAnswer(this.currentQuestion);
-
+  
     this.answer = new Answer();
+
+    this.answer.user
+   
   }
 
   getUserInfo(uid: string) {
@@ -110,6 +116,7 @@ export class QuestionDetailComponent implements OnInit {
   updateQuestion() {
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion)
   }
+
 
   removeAnswer(answer: Answer){
     var index = this.currentQuestion.answers.indexOf(answer);
