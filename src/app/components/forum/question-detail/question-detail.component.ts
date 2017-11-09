@@ -180,6 +180,6 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   verifyScoreUser(): boolean{
-    return this.currentUser.score < SCORE.minimumScoreUser;
+    return this.currentUser.score <= SCORE.minimumScoreUser;
   }
 }
