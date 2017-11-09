@@ -7,11 +7,12 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { PAGES, ENTITIES } from '../../../utils/constants';
+import { PAGES, ENTITIES, SCORE } from '../../../utils/constants';
 
 import { SiteService } from '../../../services/site.service';
 
 import { Question } from '../../../model/question';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-forum-home',
@@ -24,11 +25,13 @@ export class ForumHomeComponent implements OnInit {
   latestQuestions: Observable<any>;
   searchQuestions: string
   str: string
+  currentUser: User;
 
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   ngOnInit() {
     this.initializeList();
+    this.getUser();
   }
 
   initializeList(){
@@ -40,7 +43,13 @@ export class ForumHomeComponent implements OnInit {
   }
 
   goToCreateQuestion() {
-    this.router.navigate([PAGES.createQuestion]);
+    if(!this.verifyScoreUser()){
+    
+      this.router.navigate([PAGES.createQuestion]);
+    
+    }else{
+      alert('Sua pontuação é muito baixa para fazer uma pergunta no Fórum!')
+    }
   }
 
   searchQuestion(){
@@ -73,5 +82,20 @@ export class ForumHomeComponent implements OnInit {
         orderByChild: 'published'
       }
     }).map((array) => array.reverse())
+  }
+
+  getUser(){
+    this.db.list(ENTITIES.user)
+    .subscribe(list => {
+        list.forEach(u => {
+          if (this.auth.auth.currentUser.uid === u.uid) {
+            this.currentUser = u;
+          }
+        });
+    });
+  }
+
+  verifyScoreUser(): boolean{
+    return this.currentUser.score <= SCORE.minimumScoreUser;
   }
 }
