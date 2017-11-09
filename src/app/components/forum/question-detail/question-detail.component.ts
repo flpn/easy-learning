@@ -6,8 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { SiteService } from '../../../services/site.service';
 
-import { ENTITIES } from '../../../utils/constants';
-import { SCORE } from '../../../utils/constants';
+import { ENTITIES, SCORE, PAGES } from '../../../utils/constants';
 
 import { Question } from '../../../model/question';
 import { Answer } from '../../../model/answer';
@@ -29,7 +28,7 @@ export class QuestionDetailComponent implements OnInit {
   index: number;
   currentUser: User;
 
-  constructor(private router: ActivatedRoute, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
+  constructor(private router: ActivatedRoute, private routerPage: Router, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
     this.answer = new Answer();
     this.show = false;
   }
@@ -137,6 +136,10 @@ export class QuestionDetailComponent implements OnInit {
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion)
   }
 
+  deleteQuestion(){
+    this.siteService.remove<Question>(ENTITIES.question, this.currentQuestion.$key);
+    this.goToForumHome();
+  }
 
   removeAnswer(answer: Answer){
     var index = this.currentQuestion.answers.indexOf(answer);
@@ -181,5 +184,9 @@ export class QuestionDetailComponent implements OnInit {
 
   verifyScoreUser(): boolean{
     return this.currentUser.score <= SCORE.minimumScoreUser;
+  }
+
+  goToForumHome(){
+    this.routerPage.navigate([PAGES.forumHome]);
   }
 }

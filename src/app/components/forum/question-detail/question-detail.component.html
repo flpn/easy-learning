@@ -6,7 +6,12 @@
         
         <div *ngIf="checkUser(currentQuestion.user)" >
           <p><button type="button" class="material-icons" data-toggle="modal"
-            data-target="#myModal"  style="font-size:20px" >&#xe254;</button></p>
+            data-target="#myModal"  style="font-size:20px" >&#xe254;</button>
+            
+            <button type="button" class="material-icons" style="font-size:20px" 
+            (click)="deleteQuestion()">delete</button>
+          
+          </p>
 
             <!-- Modal Update Question-->
               <div class="modal fade" id="myModal" role="dialog"
@@ -36,7 +41,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Fim modal -->
+              <!-- Fim modal -->            
         </div>
       <div class="divider"></div>
 
