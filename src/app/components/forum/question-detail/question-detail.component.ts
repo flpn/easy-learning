@@ -38,6 +38,9 @@ export class QuestionDetailComponent implements OnInit {
     this.isLoading = true;
     this.siteService.notLogged();
     this.getKey();
+
+    this.getUser()
+    this.isLoading = false;
   }
 
   getKey() {
@@ -49,7 +52,7 @@ export class QuestionDetailComponent implements OnInit {
   findQuestion(questionKey: string) {
     this.siteService.find<Question>(ENTITIES.question, questionKey).then(question => {
       this.currentQuestion = question;
-      this.isLoading = false;
+      // this.isLoading = false;
     })
   }
 
@@ -76,37 +79,54 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   setScoreQuestion(option: number) {
-    if (!this.currentQuestion.voteLog) {
-      this.currentQuestion.voteLog = new Map<string, number>();
+    if(!this.verifyScoreUser()){
+
+      if (!this.currentQuestion.voteLog) {
+        this.currentQuestion.voteLog = new Map<string, number>();
       
-    }
-
-    let userUID = this.auth.auth.currentUser.uid;
-    let scoreMarked = this.currentQuestion.voteLog.get(userUID);
-    
-    if (scoreMarked) {
-      if ((scoreMarked + option) <= 1 && (scoreMarked + option) >= -1) {
-        this.currentQuestion.voteLog.set(userUID, (scoreMarked + option)) 
-        this.currentQuestion.score += option;
       }
+
+      let userUID = this.auth.auth.currentUser.uid;
+      let scoreMarked = this.currentQuestion.voteLog.get(userUID);
+    
+      if (scoreMarked) {
+        if ((scoreMarked + option) <= 1 && (scoreMarked + option) >= -1) {
+          this.currentQuestion.voteLog.set(userUID, (scoreMarked + option)) 
+          this.currentQuestion.score += option;
+        }
+      }
+      else {
+        this.currentQuestion.voteLog.set(userUID, option);
+        this.currentQuestion.score += option;      
+      }
+
+      scoreMarked = this.currentQuestion.voteLog.get(userUID);
+      console.log(scoreMarked);
+    
+      this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
     }
-    else {
-      this.currentQuestion.voteLog.set(userUID, option);
-      this.currentQuestion.score += option;      
+    else{
+      //TODO trocar o alert por algo menos feio
+      alert('Sua pontuação está muito baixa para avaliar uma pergunta!')
+    
     }
 
-    scoreMarked = this.currentQuestion.voteLog.get(userUID);
-    console.log(scoreMarked);
-    
-    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
-  }
+  }  
 
   setScoreAnswer(answer: Answer, option: number){
-    this.answerAux = this.answer;
-    this.answer = answer;
-    this.answer.score += option;
-    this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
-    this.answer = this.answerAux;
+    if(!this.verifyScoreUser()){  
+    
+      this.answerAux = this.answer;
+      this.answer = answer;
+      this.answer.score += option;
+      this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
+      this.answer = this.answerAux;
+    
+    }else{
+
+      alert('Sua pontuação está muito baixa para avaliar uma resposta!')
+    
+    }
   }
 
   checkUser(userKey: string): boolean{
@@ -146,5 +166,20 @@ export class QuestionDetailComponent implements OnInit {
 
   hideBestAnswer(answer: Answer) {
     return answer.text !== this.currentQuestion.bestAnswer.text;
+  }
+
+  getUser() {
+    this.db.list(ENTITIES.user)
+      .subscribe(list => {
+          list.forEach(u => {
+            if (this.auth.auth.currentUser.uid === u.uid) {
+              this.currentUser = u;
+            }
+          });
+      });
+  }
+
+  verifyScoreUser(): boolean{
+    return this.currentUser.score < SCORE.minimumScoreUser;
   }
 }
