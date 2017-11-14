@@ -2261,3 +2261,15 @@ html, body
 .white-bg {
     background-color: white!important;
 }
+
+.score {
+    background-color: #26A69A;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.white-span {
+    color: white;
+}

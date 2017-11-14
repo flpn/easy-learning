@@ -19,7 +19,14 @@
 <ul id="slide-out" class="side-nav">
   <li class="nav-title">
     <div *ngIf="!isLoading" class="userView">
-      <a href="#!user"><img class="circle restaurant-image" src="{{ currentUser.profileImage }}"></a>
+      <div class="row col s12">
+        <div class="col s5">
+          <a href="#!user"><img class="circle restaurant-image" src="{{ currentUser.profileImage }}"></a>
+        </div>
+        <div class="col s6 score">
+          <span class="white-span">{{ currentUser.score }} pontos</span>    
+        </div>
+      </div>
       <a href="#!name"><span class="white-text name">{{ currentUser.name }} {{ currentUser.lastname }}</span></a>
       <a href="#!email"><span class="white-text email">{{ currentUser.email }}</span></a>
     </div>
