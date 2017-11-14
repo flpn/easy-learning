@@ -3,46 +3,7 @@
 
     <div class="question-detail-info">
       <p class="question-title">{{ currentQuestion.title }}
-        
-        <div *ngIf="checkUser(currentQuestion.user)" >
-          <p><button type="button" class="material-icons" data-toggle="modal"
-            data-target="#myModal"  style="font-size:20px" >&#xe254;</button>
-            
-            <button type="button" class="material-icons" style="font-size:20px" 
-            (click)="deleteQuestion()">delete</button>
-          
-          </p>
-
-            <!-- Modal Update Question-->
-              <div class="modal fade" id="myModal" role="dialog"
-                tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">{{ currentQuestion.title }}</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>
-                        <textarea [(ngModel)]="currentQuestion.text" id="questionDescriptionUpdate" name="questionDescriptionUpdate" class="materialize-textarea" required></textarea>
-                      </p>
-
-                      <p>
-                        <textarea [(ngModel)]="currentQuestion.tags" id="questionTagsUpdate" name="questionTagsUpdate" class="materialize-textarea" required></textarea>
-                      </p>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal"
-                      (click)="updateQuestion()">Atualizar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Fim modal -->            
-        </div>
+      
       <div class="divider"></div>
 
       <div class="row col s12">
@@ -66,6 +27,42 @@
 
       <div class="divider"></div>      
       <div class="row col s12">
+          <div *ngIf="checkUser(currentQuestion.user)" >
+              <div>
+                <label data-toggle="modal" data-target="#myModal">editar</label>
+                <label (click)="deleteQuestion()" >deletar</label>
+              </div>
+    
+                <!-- Modal Update Question-->
+                  <div class="modal fade" id="myModal" role="dialog"
+                    tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">{{ currentQuestion.title }}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>
+                            <textarea [(ngModel)]="currentQuestion.text" id="questionDescriptionUpdate" name="questionDescriptionUpdate" class="materialize-textarea" required></textarea>
+                          </p>
+    
+                          <p>
+                            <textarea [(ngModel)]="currentQuestion.tags" id="questionTagsUpdate" name="questionTagsUpdate" class="materialize-textarea" required></textarea>
+                          </p>
+    
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal"
+                          (click)="updateQuestion()">Atualizar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Fim modal -->            
+            </div>
         <div class="user-info col offset-s10">
           <span class="question-date">perguntado em {{ currentQuestion.published | date: 'dd/MM/yyyy' }}</span>
           <!--<img class="user-image" src="{{ questionUser.profileImage }}">-->
@@ -99,16 +96,19 @@
                 {{ answer.text }}
                 
                 <div *ngIf="checkUser(answer.user)">
-                  <button type="button" class="material-icons" 
+                  <!-- <button type="button" class="material-icons" 
                     style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
 
                     <button type="button" 
-                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
+                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button> -->
+
+                    <label for="" (click)="edit(answer)">editar</label>
+                    <label for="" (click)="removeAnswer(answer)">remover</label>                      
 
                     <div *ngIf="(i === index) && show">
                         <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
                         <button type="button" class="btn waves-effect waves-light"
-                        (click)="updateAnswer(answer, index)">Atualizar</button>
+                        (click)="updateAnswer(answer, index)">Atualizar</button>                        
                     </div>
                 </div>
 
