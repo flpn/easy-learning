@@ -26,6 +26,7 @@ export class ForumHomeComponent implements OnInit {
   searchQuestions: string
   str: string
   currentUser: User;
+  scoreCurrent: Number
 
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
@@ -44,9 +45,9 @@ export class ForumHomeComponent implements OnInit {
 
   goToCreateQuestion() {
     if(!this.verifyScoreUser()){
-    
+
       this.router.navigate([PAGES.createQuestion]);
-    
+
     }else{
       alert('Sua pontuação é muito baixa para fazer uma pergunta no Fórum!')
     }
@@ -60,7 +61,7 @@ export class ForumHomeComponent implements OnInit {
         query: {
           orderByChild: 'score'
         }
-      }).map(itens => itens.filter(item => item.tags.toUpperCase().includes(this.searchQuestions.toUpperCase()) 
+      }).map(itens => itens.filter(item => item.tags.toUpperCase().includes(this.searchQuestions.toUpperCase())
                 || item.title.toUpperCase().includes(this.searchQuestions.toUpperCase())
                 || item.text.toUpperCase().includes(this.searchQuestions.toUpperCase())
               ))
@@ -90,12 +91,13 @@ export class ForumHomeComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
+            this.scoreCurrent = this.currentUser.score
           }
         });
     });
   }
 
   verifyScoreUser(): boolean{
-    return this.currentUser.score <= SCORE.minimumScoreUser;
+    return this.scoreCurrent <= SCORE.minimumScoreUser;
   }
 }
