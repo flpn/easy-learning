@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ForumHomeComponent } from './components/forum/forum-home/forum-home.component';
 import { CreateQuestionComponent } from './components/forum/create-question/create-question.component';
 import { QuestionDetailComponent } from './components/forum/question-detail/question-detail.component';
+import { GroupsHomeComponent } from './components/groups/groups-home/groups-home.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,7 +15,8 @@ export const ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'forumHome', component: ForumHomeComponent },
     { path: 'createQuestion', component: CreateQuestionComponent },
-    { path: 'question/:question-key', component: QuestionDetailComponent }
+    { path: 'question/:question-key', component: QuestionDetailComponent },
+    { path: 'groupsHome', component: GroupsHomeComponent }    
 ];
 
 export const COMPONENTS = [
@@ -23,7 +25,8 @@ export const COMPONENTS = [
     HomeComponent,
     ForumHomeComponent,
     CreateQuestionComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    GroupsHomeComponent
 ];
 
 export const PARTIAL_COMPONENTS = [

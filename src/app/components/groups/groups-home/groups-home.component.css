@@ -1,0 +1,15 @@
+.groups-home-container {
+    background-color: #E1E8E3;
+}
+
+.card {
+    z-index: 0;
+}
+
+.activator {
+    height: 200px;
+}
+
+.card-title {
+    height: 100px;
+}
