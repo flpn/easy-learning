@@ -5,6 +5,7 @@ export const PAGES =  {
     home: '/home',
     forumHome: '/forumHome',
     createQuestion: '/createQuestion'
+    createGroup: '/createGroup'
 }
 
 export const NO_AUTHORIZED_PAGES = {
@@ -14,7 +15,8 @@ export const NO_AUTHORIZED_PAGES = {
 
 export const ENTITIES = {
     user: '/users',
-    question: '/questions'
+    question: '/questions',
+    group: '/groups'
 }
 
 export const SCORE = {
