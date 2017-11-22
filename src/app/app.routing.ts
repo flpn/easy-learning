@@ -7,16 +7,23 @@ import { ForumHomeComponent } from './components/forum/forum-home/forum-home.com
 import { CreateQuestionComponent } from './components/forum/create-question/create-question.component';
 import { QuestionDetailComponent } from './components/forum/question-detail/question-detail.component';
 import { GroupsHomeComponent } from './components/groups/groups-home/groups-home.component';
+import { GroupDetailComponent } from './components/groups/group-detail/group-detail.component';
 
 export const ROUTES: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'groupsHome', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signUp', component: SignUpComponent },
     { path: 'home', component: HomeComponent },
     { path: 'forumHome', component: ForumHomeComponent },
     { path: 'createQuestion', component: CreateQuestionComponent },
     { path: 'question/:question-key', component: QuestionDetailComponent },
-    { path: 'groupsHome', component: GroupsHomeComponent }    
+    { path: 'groupsHome', component: GroupsHomeComponent },    
+    
+    //Routing fake
+    { path: 'group', component: GroupDetailComponent }    
+    
+    // Routing correto    
+    // { path: 'group/:group-key', component: GroupDetailComponent }    
 ];
 
 export const COMPONENTS = [
@@ -26,7 +33,8 @@ export const COMPONENTS = [
     ForumHomeComponent,
     CreateQuestionComponent,
     QuestionDetailComponent,
-    GroupsHomeComponent
+    GroupsHomeComponent,
+    GroupDetailComponent,
 ];
 
 export const PARTIAL_COMPONENTS = [

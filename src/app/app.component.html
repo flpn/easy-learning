@@ -36,7 +36,10 @@
   <li><a class="subheader"><i class="material-icons">settings</i> Opções de Grupos</a></li>
   <li><a class="waves-effect" (click)="closeNav()" [routerLink]="['/groupsHome']">Grupos</a></li>
   <li><a class="waves-effect" (click)="closeNav()">Mais populares</a></li>
-  <li><a class="waves-effect" (click)="closeNav()">Recomendados</a></li>
+
+  <!-- Habilitar apenas para adms -->
+  <li><a class="waves-effect" (click)="closeNav()">Gerenciar Grupos</a></li>
+  
   <li><div class="divider"></div></li>
   <li><a class="subheader"><i class="material-icons">insert_chart</i> Fórum</a></li>
   <li><a class="waves-effect" (click)="closeNav()" [routerLink]="['/forumHome']" >Perguntas</a></li>
