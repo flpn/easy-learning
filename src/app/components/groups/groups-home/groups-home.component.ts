@@ -31,11 +31,11 @@ export class GroupsHomeComponent implements OnInit {
   ngOnInit() {}
 
   createGroup(){
-
+    
     this.router.navigate([PAGES.createGroup])
 
     // this.afDatabase.list('groups').push(this.newGroup);
-    // console.log("teste")
+    console.log("teste")
   }
 
 }

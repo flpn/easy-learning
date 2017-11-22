@@ -1,0 +1,32 @@
+<div class="create-group-container padd-on-top">
+  <div class="create-group">    
+    <h3 class="title">Criar Grupo</h3>
+    <div class="divider"></div>
+
+    <form #createQuestionForm="ngForm" class="col-s12" id="createGroupForm" name="createGroupForm" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input [(ngModel)]="newGroup.title" id="title" name="title" type="text" class="validate" required>
+          <label for="disabled">Título</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea [(ngModel)]="newGroup.text" id="body" name="body" class="materialize-textarea" required></textarea>
+          <label for="body">Descrição</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input [(ngModel)]="newGroup.tags" type="text" id="tags" name="tags" class="autocomplete" required>
+          <label for="tags">Tags</label>
+        </div>
+      </div>
+
+      <button [disabled]="!createGroupForm.form.valid" class="btn waves-effect waves-light margin-button"
+      type="submit" name="action" (click)="createGroup()">Criar Grupo</button>
+    </form>
+  </div>  
+</div>

@@ -14,12 +14,14 @@ import { MaterializeModule } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 
 import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
+import { CreateGroupComponent } from './components/groups/create-group/create-group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ...COMPONENTS,
     ...PARTIAL_COMPONENTS,
+    CreateGroupComponent,
   ],
   imports: [
     BrowserModule,

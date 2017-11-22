@@ -8,6 +8,7 @@ import { CreateQuestionComponent } from './components/forum/create-question/crea
 import { QuestionDetailComponent } from './components/forum/question-detail/question-detail.component';
 import { GroupsHomeComponent } from './components/groups/groups-home/groups-home.component';
 import { GroupDetailComponent } from './components/groups/group-detail/group-detail.component';
+import { CreateGroupComponent } from './components/groups/create-group/create-group.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'groupsHome', pathMatch: 'full' },
@@ -17,7 +18,8 @@ export const ROUTES: Routes = [
     { path: 'forumHome', component: ForumHomeComponent },
     { path: 'createQuestion', component: CreateQuestionComponent },
     { path: 'question/:question-key', component: QuestionDetailComponent },
-    { path: 'groupsHome', component: GroupsHomeComponent },    
+    { path: 'groupsHome', component: GroupsHomeComponent }, 
+    { path: 'createGroup', component: CreateGroupComponent},   
     
     //Routing fake
     { path: 'group', component: GroupDetailComponent }    

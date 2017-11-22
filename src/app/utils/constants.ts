@@ -4,7 +4,7 @@ export const PAGES =  {
     signUp: '/signUp',
     home: '/home',
     forumHome: '/forumHome',
-    createQuestion: '/createQuestion'
+    createQuestion: '/createQuestion',
     createGroup: '/createGroup'
 }
 
