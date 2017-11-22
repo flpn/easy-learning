@@ -19,11 +19,8 @@ import { Group } from '../../../model/group';
 })
 export class GroupsHomeComponent implements OnInit {
 
-  newGroup: Group;
-
   constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) {
     
-    this.newGroup = new Group();
     // this.auth.auth.currentUser.uid;
 
    }
