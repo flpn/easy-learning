@@ -2,97 +2,48 @@
   <!-- <p>group-detail works!</p> -->
 
   <div class="group-detail">
+    
+    <div>{{currentGroup.title}}</div>
+
 
     <div class="row">
       <form class="col s12">
         <div class="row">
           <div class="input-field col s10">
             <i class="material-icons prefix">mode_edit</i>
-            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-            <label for="icon_prefix2">Novo post</label>
+             <input [(ngModel)]="newPost.text" id="title" name="title" type="text" required>             
+             <label for="icon_prefix2">Novo post</label>
           </div>
 
           <div class="padding-button">
-            <a class="waves-effect waves-light btn" style="z-index: 0;">Postar</a>
+            <a class="waves-effect waves-light btn" style="z-index: 0;" (click)="post()">Postar</a>
           </div>
 
         </div>
       </form>
     </div>
-
-    <div class="row">
-      <div class="col s12">
-        <div class="card-panel teal">
-          <div class="row">
-            <div class="col-md-11">
-              <a href="#" class="logo"><img class="logo-picture" src="../assets/img/dummy.png"/></a>
-              <h5 class="white-text" style="display: inline">Ximixongas Nin</h5>
-            </div>
-
-            <div>
-              <span class="white-text">25/11/2017</span>
-            </div>
-
-          </div>
-          
-          <span class="white-text">
-              Angular 2是一个更好的角度。它已经取代了Angular 1中存在的许多旧版本，也超出了其他竞争框架的功能。然而，Angular 2与Angular 1完全不同。它不像运行npm install来将Angular 1应用升级到Angular 2一样简单。它基本上是一个不同的框架 - 但它基于原来使Angular 1更好的相同的想法，以及近年来出现的一些新的思想和技术。大多数教程假设您已经知道Angular 2依赖的所有技术（TypeScript，RxJS等）。他们也没有链接到文档和其他相关资源，使您对框架的看法很有限。如果你已经尝试了学习如何使用Angular 2，并且结束了与你的脸蛋，你并不孤单。这是令人难以置信的令人沮丧的，是创建这门课程的主要动机。我们竭尽全力确保此课程是学习Angular 2的最平滑的0-60经验。
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
+    
+    <div class="row" *ngFor="let post of currentGroup.groupPosts">
         <div class="col s12">
           <div class="card-panel teal">
             <div class="row">
               <div class="col-md-11">
-                <a href="#" class="logo"><img class="logo-picture" src="../assets/img/dummy.png"/></a>
-                <h5 class="white-text" style="display: inline">Felipe Netto</h5>
+                <a href="#" class="logo"><img class="logo-picture" src={{post.user.profileImage}}/></a>
+                <h5 class="white-text" style="display: inline">{{post.user.name}}</h5>
               </div>
   
               <div>
-                <span class="white-text" >24/11/2017</span>
+                <span class="white-text">{{post.published}}</span>
               </div>
   
             </div>
             
             <span class="white-text">
-                Seguem os pilares da programação reativa:
-                
-                    <br/>Elástico: Reage à demanda/carga: aplicações podem fazer uso de múltiplos núcleos e múltiplos servidores;
-                    <br/> Reage às falhas; aplicações reagem e se recuperam de
-                    falhas de software, hardware e de conectividade;
-                    <br/>Message Driven: Reage aos eventos (event driven): em vez de compor
-                    aplicações por múltiplas threads síncronas, sistemas são compostos de gerenciadores de eventos assíncronos e não bloqueantes;
-                    <br/>Responsivo: Reage aos usuários: aplicações que oferecem interações
-                    ricas e “tempo real” com usuários.
+              {{post.text}}
             </span>
           </div>
         </div>
       </div>
-
-      <div class="row">
-          <div class="col s12">
-            <div class="card-panel teal">
-              <div class="row">
-                <div class="col-md-11">
-                  <a href="#" class="logo"><img class="logo-picture" src="../assets/img/dummy.png"/></a>
-                  <h5 class="white-text" style="display: inline">Eduardo Andrade</h5>
-                </div>
-    
-                <div>
-                  <span class="white-text">20/11/2017</span>
-                </div>
-    
-              </div>
-              
-              <span class="white-text">
-                  Link para javascript: https://www.sitepoint.com/higher-order-functions-javascript/
-              </span>
-            </div>
-          </div>
-        </div>
-
+  
   </div>
 </div>

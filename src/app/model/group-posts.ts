@@ -1,6 +1,8 @@
+import { User } from './user'
+
 export class GroupPosts{
     $key: string;
-    user: string;
+    user: User;
     text: string;    
     published: number;
 

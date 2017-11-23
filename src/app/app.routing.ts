@@ -18,6 +18,7 @@ export const ROUTES: Routes = [
     { path: 'forumHome', component: ForumHomeComponent },
     { path: 'createQuestion', component: CreateQuestionComponent },
     { path: 'question/:question-key', component: QuestionDetailComponent },
+    { path: 'group/:group-key', component: GroupDetailComponent },    
     { path: 'groupsHome', component: GroupsHomeComponent }, 
     { path: 'createGroup', component: CreateGroupComponent},   
     

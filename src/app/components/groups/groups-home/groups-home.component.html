@@ -15,117 +15,26 @@
   <!-- <span>Group-home works</span> -->
 
 
-  <div class="row">
+  <div class="row" >
 
-    <!-- teste -->
-    <div class="col-md-3" data-toggle="modal" data-target="#myModal"> 
+    <div class="col-md-3" *ngFor="let group of groupList | async">
       <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator">
+          <img class="activator" src={{group.groupImage}}>
         </div>
         <div class="card-content">
-          <p><a>Novo grupo</a></p>
-        </div>
-      </div>
-    </div>
-    <!-- fim teste -->
-
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcode-1839406_640.jpg?alt=media&token=0681cc63-bd17-4e28-91c1-910171c1a157">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Programação Web<i class="material-icons right">more_vert</i></span>
-          <p><a [routerLink]="['/group']">Inscrever-se</a></p>
+          <span class="card-title activator grey-text text-darken-4">{{group.title}}<i class="material-icons right">more_vert</i></span>
+          <p><a [routerLink]="['/group', group.$key]">Inscrever-se</a></p>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Programação Web<i class="material-icons right">close</i></span>
-          <p>O JavaScript é uma linguagem utilizada para programação de scripts que são executados no navegador do usuário de um website ou como se diz, do lado do cliente. É uma linguagem dinâmica, orientada a objetos e criada com sintaxe similar à linguagem C, apesar de conter Java no nome.</p>
+          <span class="card-title grey-text text-darken-4">{{group.title}}<i class="material-icons right">close</i></span>
+          <p>{{group.description}}</p>
         </div>
       </div>
     </div>
   
 
-    <div class="col-md-3">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fprogramming-languages-to-learn-for-wordpress-featured-image.png?alt=media&token=cf78c8ac-491d-4ba8-962a-d84f5f0d0764">
-          </div>
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Banco de Dados<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">Inscrever-se</a></p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Banco de Dados<i class="material-icons right">close</i></span>
-            <p>Bancos de dados ou bases de dados são um conjunto de arquivos relacionados entre si com registros sobre pessoas, lugares ou coisas. São coleções organizadas de dados que se relacionam de forma a criar algum sentido (Informação) e dar mais eficiência durante uma pesquisa ou estudo.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2FProgramming-Skills.jpg?alt=media&token=945e040d-ab1c-4fa5-9cd5-395bfaa2371a">
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Estrutura de Dados<i class="material-icons right">more_vert</i></span>
-              <p><a href="#">Inscrever-se</a></p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Estrutura de Dados<i class="material-icons right">close</i></span>
-              <p>Na Ciência da computação, uma estrutura de dados é um modo particular de armazenamento e organização de dados em um computador de modo que possam ser usados eficientemente, facilitando sua busca e modificação.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Frobot-507811_640.jpg?alt=media&token=9f42bc6a-f18e-4687-a5d3-f87679646b2f">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Paradigmas de Programação<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">Inscrever-se</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Paraddigmas de Programação<i class="material-icons right">close</i></span>
-                <p>Em ciência da computação, programação funcional é um paradigma de programação que trata a computação como uma avaliação de funções matemáticas e que evita estados ou dados mutáveis. Ela enfatiza a aplicação de funções, em contraste da programação imperativa, que enfatiza mudanças no estado do programa.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-              <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fprogramming-jobs-software-development.jpg?alt=media&token=ef0f2ef1-0790-49e6-b5f0-442ffe7a56c6">
-                </div>
-                <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4">Teste de Software<i class="material-icons right">more_vert</i></span>
-                  <p><a href="#">Inscrever-se</a></p>
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">Teste de Software<i class="material-icons right">close</i></span>
-                  <p>Teste de Software é um processo que faz parte do #desenvolvimento de software, e tem como principal objetivo revelar falhas/bugs para que sejam corrigidas até que o produto final atinja a qualidade desejada / acordada.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card">
-                  <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Flaptop-2452814_640.jpg?alt=media&token=40ea2e76-34e3-4720-acd7-b48654d6c19a">
-                  </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Programação Funcional<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Inscrever-se</a></p>
-                  </div>
-                  <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Programação Funcional<i class="material-icons right">close</i></span>
-                    <p>Em ciência da computação, programação funcional é um paradigma de programação que trata a computação como uma avaliação de funções matemáticas e que evita estados ou dados mutáveis. Ela enfatiza a aplicação de funções, em contraste da programação imperativa, que enfatiza mudanças no estado do programa.</p>
-                  </div>
-                </div>
-              </div>
+    
   </div>
 
 </div>

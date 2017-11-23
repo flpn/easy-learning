@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
+
+import 'rxjs/add/operator/map'
+import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-
 import { SiteService } from '../../../services/site.service';
 
-import { PAGES } from '../../../utils/constants';
+import { PAGES, ENTITIES} from '../../../utils/constants';
 
 import { Group } from '../../../model/group';
 
@@ -19,13 +20,17 @@ import { Group } from '../../../model/group';
 })
 export class GroupsHomeComponent implements OnInit {
 
+  groupList: Observable<any>;
+
   constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) {
     
     // this.auth.auth.currentUser.uid;
 
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.groupList = this.afDatabase.list(ENTITIES.group)
+  }
 
   createGroup(){
     

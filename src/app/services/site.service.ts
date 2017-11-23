@@ -11,6 +11,7 @@ import { BaseService } from './base.service';
 
 import { User } from '../model/user';
 import { Question } from '../model/question';
+import { Group } from '../model/group';
 
 @Injectable()
 export class SiteService implements OnDestroy {
@@ -107,10 +108,14 @@ export class SiteService implements OnDestroy {
      return this.insert<Question>(ENTITIES.question, question)
    }
 
+   createGroup(group: Group){
+    return this.insert<Group>(ENTITIES.group, group)
+   }
+
    createAnswer(question: Question) {
      this.update<Question>(ENTITIES.question, question.$key, question);
    }
-
+   
    notLogged() {
     this.angularFireAuth.authState.subscribe(user => {
       if(!user) {
