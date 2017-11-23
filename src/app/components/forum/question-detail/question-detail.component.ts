@@ -21,19 +21,23 @@ import { User } from '../../../model/user';
 export class QuestionDetailComponent implements OnInit {
 
   currentQuestion: Question;
-  show:boolean;
+  show: boolean;
   answer: Answer;
   isLoading: boolean;
-  answerAux: Answer; 
+  answerAux: Answer;
   index: number;
   currentUser: User;
 
+<<<<<<< HEAD
   constructor(private router: ActivatedRoute, private routerPage: Router,
      private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
+=======
+  constructor(private router: ActivatedRoute, private routerPage: Router, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) {
+>>>>>>> 9ba6858893c5de5a26ab9e6c78bd4f7df9f04ba1
     this.answer = new Answer();
     this.show = false;
   }
-  
+
   ngOnInit() {
     this.isLoading = true;
     this.siteService.notLogged();
@@ -61,15 +65,19 @@ export class QuestionDetailComponent implements OnInit {
       this.currentQuestion.answers = [];
     }
 
-    this.answer.user = this.auth.auth.currentUser.uid;
+    if (this.checkUser(this.currentQuestion.user)) {
+      alert('Usuário não pode responder sua própria pergunta.');
+    }
+    else {
+        this.answer.user = this.auth.auth.currentUser.uid;
     
-    this.currentQuestion.answers.push(this.answer);
-    this.siteService.createAnswer(this.currentQuestion);
-  
-    this.answer = new Answer();
-
-    this.answer.user
-   
+        this.currentQuestion.answers.push(this.answer);
+        this.siteService.createAnswer(this.currentQuestion);
+    
+        this.answer = new Answer();
+    
+        this.answer.user
+    }
   }
 
   getUserInfo(uid: string) {
@@ -79,57 +87,58 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   setScoreQuestion(option: number) {
-    if(!this.verifyScoreUser()){
+    if (this.checkUser(this.currentQuestion.user)) {
+      alert('Usuário não pode votar na sua própria pergunta.');
+    }
+    else if (!this.verifyScoreUser()) {
 
       if (!this.currentQuestion.voteLog) {
         this.currentQuestion.voteLog = new Map<string, number>();
-      
+
       }
 
       let userUID = this.auth.auth.currentUser.uid;
       let scoreMarked = this.currentQuestion.voteLog.get(userUID);
-    
+
       if (scoreMarked) {
         if ((scoreMarked + option) <= 1 && (scoreMarked + option) >= -1) {
-          this.currentQuestion.voteLog.set(userUID, (scoreMarked + option)) 
+          this.currentQuestion.voteLog.set(userUID, (scoreMarked + option))
           this.currentQuestion.score += option;
         }
       }
       else {
         this.currentQuestion.voteLog.set(userUID, option);
-        this.currentQuestion.score += option;      
+        this.currentQuestion.score += option;
       }
 
       scoreMarked = this.currentQuestion.voteLog.get(userUID);
       console.log(scoreMarked);
-    
+
       this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
     }
-    else{
+    else {
       //TODO trocar o alert por algo menos feio
       alert('Sua pontuação está muito baixa para avaliar uma pergunta!')
-    
-    }
-
-  }  
-
-  setScoreAnswer(answer: Answer, option: number){
-    if(!this.verifyScoreUser()){  
-    
-      this.answerAux = this.answer;
-      this.answer = answer;
-      this.answer.score += option;
-      this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);  
-      this.answer = this.answerAux;
-    
-    }else{
-
-      alert('Sua pontuação está muito baixa para avaliar uma resposta!')
-    
     }
   }
 
-  checkUser(userKey: string): boolean{
+  setScoreAnswer(answer: Answer, option: number) {
+    if (!this.verifyScoreUser()) {
+
+      this.answerAux = this.answer;
+      this.answer = answer;
+      this.answer.score += option;
+      this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion);
+      this.answer = this.answerAux;
+
+    } else {
+
+      alert('Sua pontuação está muito baixa para avaliar uma resposta!')
+
+    }
+  }
+
+  checkUser(userKey: string): boolean {
     return userKey === this.auth.auth.currentUser.uid
   }
 
@@ -137,30 +146,30 @@ export class QuestionDetailComponent implements OnInit {
     this.siteService.update<Question>(ENTITIES.question, this.currentQuestion.$key, this.currentQuestion)
   }
 
-  deleteQuestion(){
+  deleteQuestion() {
     this.siteService.remove<Question>(ENTITIES.question, this.currentQuestion.$key);
     this.goToForumHome();
   }
 
-  removeAnswer(answer: Answer){
+  removeAnswer(answer: Answer) {
     var index = this.currentQuestion.answers.indexOf(answer);
     this.currentQuestion.answers.splice(index, 1);
     this.updateQuestion();
   }
 
-  edit(answer: Answer){
+  edit(answer: Answer) {
     this.index = this.currentQuestion.answers.indexOf(answer);
-    if(this.show){
+    if (this.show) {
       this.show = false;
-    }else{
+    } else {
       this.show = true;
     }
   }
 
-  updateAnswer(answer: Answer){
+  updateAnswer(answer: Answer) {
     this.currentQuestion.answers[this.index] = answer;
     this.updateQuestion();
-    this.show = false    
+    this.show = false
   }
 
   bestAnswer(answer: Answer) {
@@ -169,25 +178,31 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   hideBestAnswer(answer: Answer) {
-    return answer.text !== this.currentQuestion.bestAnswer.text;
+    // return this.currentQuestion.bestAnswer !== undefined && answer.text !== this.currentQuestion.bestAnswer.text;
+    if (this.currentQuestion.bestAnswer) {
+      return answer.text !== this.currentQuestion.bestAnswer.text;
+    }
+    else {
+      return true;
+    }
   }
 
   getUser() {
     this.db.list(ENTITIES.user)
       .subscribe(list => {
-          list.forEach(u => {
-            if (this.auth.auth.currentUser.uid === u.uid) {
-              this.currentUser = u;
-            }
-          });
+        list.forEach(u => {
+          if (this.auth.auth.currentUser.uid === u.uid) {
+            this.currentUser = u;
+          }
+        });
       });
   }
 
-  verifyScoreUser(): boolean{
+  verifyScoreUser(): boolean {
     return this.currentUser.score <= SCORE.minimumScoreUser;
   }
 
-  goToForumHome(){
+  goToForumHome() {
     this.routerPage.navigate([PAGES.forumHome]);
   }
 }
