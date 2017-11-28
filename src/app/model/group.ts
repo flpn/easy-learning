@@ -9,8 +9,12 @@ export class Group{
     groupImage: string
     subscribers: Array<User>
     groupPosts: Array<GroupPosts>
+    adm: User
+    requests: Array<User>
 
     constructor(){
+        this.subscribers = []
+        this.requests = []
         
     }
 

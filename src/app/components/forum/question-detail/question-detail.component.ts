@@ -28,12 +28,9 @@ export class QuestionDetailComponent implements OnInit {
   index: number;
   currentUser: User;
 
-<<<<<<< HEAD
   constructor(private router: ActivatedRoute, private routerPage: Router,
-     private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) { 
-=======
-  constructor(private router: ActivatedRoute, private routerPage: Router, private siteService: SiteService, private db: AngularFireDatabase, private auth: AngularFireAuth) {
->>>>>>> 9ba6858893c5de5a26ab9e6c78bd4f7df9f04ba1
+     private siteService: SiteService, private db: AngularFireDatabase,
+      private auth: AngularFireAuth) {
     this.answer = new Answer();
     this.show = false;
   }

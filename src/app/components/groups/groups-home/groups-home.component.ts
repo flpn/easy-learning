@@ -12,6 +12,7 @@ import { SiteService } from '../../../services/site.service';
 import { PAGES, ENTITIES} from '../../../utils/constants';
 
 import { Group } from '../../../model/group';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-groups-home',
@@ -21,15 +22,18 @@ import { Group } from '../../../model/group';
 export class GroupsHomeComponent implements OnInit {
 
   groupList: Observable<any>;
+  currentGroup: Group;
+  currentUser: User;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) {
-    
-    // this.auth.auth.currentUser.uid;
-
+  constructor(private router: Router, private afAuth: AngularFireAuth,
+     private afDatabase: AngularFireDatabase, private db: AngularFireDatabase,
+     private auth: AngularFireAuth,private siteService: SiteService) {
+  
    }
 
   ngOnInit() {
     this.groupList = this.afDatabase.list(ENTITIES.group)
+    this.getUser()
   }
 
   createGroup(){
@@ -39,5 +43,35 @@ export class GroupsHomeComponent implements OnInit {
     // this.afDatabase.list('groups').push(this.newGroup);
     console.log("teste")
   }
+
+  subscribe(key: string){
+   this.afDatabase.list(ENTITIES.group)
+    .subscribe(list => 
+      list.filter(group => {
+        if(group.$key == key){
+          this.currentGroup = group
+          if(!this.currentGroup.requests){
+            this.currentGroup.requests = []  
+          } 
+          this.currentGroup.requests.push(this.currentUser)
+          this.siteService.update(ENTITIES.group, key, this.currentGroup)
+          console.log(this.currentGroup)
+          console.log("solicitação enviada")  
+        } 
+        })
+    )  
+  }
+
+  getUser() {
+    this.db.list(ENTITIES.user)
+      .subscribe(list => {
+        list.forEach(u => {
+          if (this.auth.auth.currentUser.uid === u.uid) {
+            this.currentUser = u;
+          }
+        });
+      });
+  }
+
 
 }

@@ -17,7 +17,8 @@ import { Group } from '../model/group';
 export class SiteService implements OnDestroy {
     subscriptions: any[] = [];
 
-    constructor(private router: Router, private angularFire: AngularFireDatabase, private angularFireAuth :AngularFireAuth) { }
+    constructor(private router: Router, private angularFire: 
+        AngularFireDatabase, private angularFireAuth :AngularFireAuth) { }
 
     ngOnDestroy() {
         this.subscriptions.forEach(s => s.unsubscribe());
