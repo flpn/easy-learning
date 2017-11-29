@@ -24,6 +24,7 @@ export class GroupsHomeComponent implements OnInit {
   groupList: Observable<any>;
   currentGroup: Group;
   currentUser: User;
+  show: boolean
 
   constructor(private router: Router, private afAuth: AngularFireAuth,
      private afDatabase: AngularFireDatabase, private db: AngularFireDatabase,
@@ -34,13 +35,14 @@ export class GroupsHomeComponent implements OnInit {
   ngOnInit() {
     this.groupList = this.afDatabase.list(ENTITIES.group)
     this.getUser()
+    // this.verifyUser1()
   }
 
   createGroup(){
     
     this.router.navigate([PAGES.createGroup])
+    console.log(this.currentGroup.subscribers.includes(this.currentUser))
 
-    // this.afDatabase.list('groups').push(this.newGroup);
     console.log("teste")
   }
 
@@ -50,19 +52,16 @@ export class GroupsHomeComponent implements OnInit {
       list.filter(group => {
         if(group.$key == key){
           this.currentGroup = group
-          if(!this.currentGroup.requests){
-            this.currentGroup.requests = []  
+            if(!this.currentGroup.requests){
+              this.currentGroup.requests = []  
+            } 
+            this.currentGroup.requests.push(this.currentUser)
+            this.siteService.update(ENTITIES.group, key, this.currentGroup)
+            console.log("solicitação enviada")  
           } 
-          this.currentGroup.requests.push(this.currentUser)
-          this.siteService.update(ENTITIES.group, key, this.currentGroup)
-          console.log(this.currentGroup)
-          console.log("solicitação enviada")  
-        
-        
-        } 
         })
-    )  
-  }
+      )
+    }
 
   getUser() {
     this.db.list(ENTITIES.user)
@@ -70,10 +69,22 @@ export class GroupsHomeComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
+    
           }
         });
       });
+    }
+
+  verifyUser(group: Group): boolean{
+    // console.log(group.subscribers.includes(this.currentUser))
+    return !group.subscribers.includes(this.currentUser)
+
   }
 
+  verifyUser1() {
+    this.afDatabase.list(ENTITIES.group)
+
+
+  }
 
 }
