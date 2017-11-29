@@ -57,6 +57,8 @@ export class GroupsHomeComponent implements OnInit {
           this.siteService.update(ENTITIES.group, key, this.currentGroup)
           console.log(this.currentGroup)
           console.log("solicitação enviada")  
+        
+        
         } 
         })
     )  

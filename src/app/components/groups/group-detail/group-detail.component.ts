@@ -84,4 +84,19 @@ export class GroupDetailComponent implements OnInit {
     // console.log(this.newPost.text)
   }
 
+  checkUser(userKey: string): boolean {
+    return userKey === this.currentGroup.adm.uid
+  }
+
+  acceptUser(user: User, numberOfAcception:number){
+    if(numberOfAcception ===1){
+      this.currentGroup.subscribers.push(user)      
+    }
+    
+    let index = this.currentGroup.requests.indexOf(user)
+    this.currentGroup.requests.splice(index, 1)
+    
+    this.siteService.update<Group>(ENTITIES.group, this.currentGroup.$key, this.currentGroup)
+  }
+
 }

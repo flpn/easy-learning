@@ -7,7 +7,18 @@
     <p>
     <h6 class="black-text" style="display: inline">Criado por: {{currentGroup.adm.name}}</h6>
     <p>
-      
+    
+      <div *ngIf="checkUser(currentUser.uid)" >
+        <li *ngFor="let item of currentGroup.requests " class="collection-item">
+
+          <label for="">{{ item.name + " " + item.lastname}}</label>
+          <a (click)="acceptUser(item, 1)">Aceitar</a>
+          <a (click)="acceptUser(item, 0)">Recusar</a>
+          
+        </li>
+
+      </div>
+
     <div class="row">
       <form class="col s12">
         <div class="row">
