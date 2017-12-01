@@ -1,14 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  font-family: "Roboto", sans-serif !important;
-  letter-spacing: 2px;
-  line-height: 1.5;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.padd-on-top {
-  padding-top: 75px;
-} 
-
-.font-20 {
-  font-size: 20px;
+main {
+  flex: 1 0 auto;
 }

@@ -6,15 +6,17 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* height:100vh; */
+  height:100vh;
 }
 
 .login-card{
   background-color: #ffffff;      
+  border-radius: 5px;
   opacity: .85;
 }
 .profile-image-login {
   width: 230px;
+  opacity: 1;
 }
 
 .login-form-text {
@@ -29,4 +31,34 @@
 
 .links {
   cursor: pointer;
+}
+
+.input-field input[type=email]:focus + label {
+  color: #1E467A;
+}
+
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid #1E467A;
+  box-shadow: 0 1px 0 0 #1E467A;
+}
+
+.input-field .prefix.active {
+  color: #1E467A;
+}
+
+.input-field input[type=password]:focus + label {
+  color: #1E467A;
+}
+
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #1E467A;
+  box-shadow: 0 1px 0 0 #1E467A;
+}
+
+.btn{
+  background-color: #1E467A;
+}
+
+.btn:hover {
+  background-color: #FFCD05;
 }
