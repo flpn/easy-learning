@@ -14,6 +14,8 @@ import { SiteService } from '../../../services/site.service';
 import { Question } from '../../../model/question';
 import { User } from '../../../model/user';
 
+declare var $: any;
+
 @Component({
   selector: 'app-forum-home',
   providers: [SiteService],
@@ -31,6 +33,7 @@ export class ForumHomeComponent implements OnInit {
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   ngOnInit() {
+    $('select').material_select();    
     this.initializeList();
     this.getUser();
   }
@@ -99,5 +102,14 @@ export class ForumHomeComponent implements OnInit {
 
   verifyScoreUser(): boolean{
     return this.scoreCurrent <= SCORE.minimumScoreUser;
+  }
+
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.goToLogin());
   }
 }

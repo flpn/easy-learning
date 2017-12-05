@@ -1,4 +1,4 @@
-<div class="question-detail-container padd-on-top" >
+<!-- <div class="question-detail-container padd-on-top" >
   <div *ngIf="!isLoading" class="card-panel">
 
     <div class="question-detail-info">
@@ -33,12 +33,12 @@
                 <label (click)="deleteQuestion()" >deletar</label>
               </div>
     
-                <!-- Modal Update Question-->
+                Modal Update Question
                   <div class="modal fade" id="myModal" role="dialog"
                     tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
     
-                      <!-- Modal content-->
+                      Modal content
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -61,17 +61,17 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Fim modal -->            
+                  Fim modal            
             </div>
         <div class="user-info col offset-s10">
           <span class="question-date">perguntado em {{ currentQuestion.published | date: 'dd/MM/yyyy' }}</span>
-          <!--<img class="user-image" src="{{ questionUser.profileImage }}">-->
-          <!--<span>{{ questionUser.name }}</span>-->
+          <img class="user-image" src="{{ questionUser.profileImage }}">
+          <span>{{ questionUser.name }}</span>
         </div>
       </div>
     </div>
 
-    <!-- TODO -->
+    TODO
     <div class="best-answer" *ngIf="currentQuestion.bestAnswer">
       <p class="question-title">Melhor resposta</p>
       
@@ -96,11 +96,11 @@
                 {{ answer.text }}
                 
                 <div *ngIf="checkUser(answer.user)">
-                  <!-- <button type="button" class="material-icons" 
+                  <button type="button" class="material-icons" 
                     style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
 
                     <button type="button" 
-                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button> -->
+                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
 
                     <label for="" (click)="edit(answer)">editar</label>
                     <label for="" (click)="removeAnswer(answer)">remover</label>                      
@@ -130,5 +130,135 @@
       <button [disabled]="!questionDetailForm.form.valid" class="btn waves-effect waves-light"
         type="submit" name="action" (click)="createAnswer()">Poste sua resposta</button>
     </form>
+  </div>
+</div> -->
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+        <li><a href="badges.html"><i class="material-icons left">group</i>Grupos</a></li>
+        <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+        <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+        </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <div class="col s12 m4 l1"></div>
+
+    <div class="col s12 m4 l10">
+      <div class="row">
+        <p class="header">{{ currentQuestion.title }}</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m4 l1 center-align">
+            <i (click)="setScoreQuestion(1)" class="material-icons">expand_less</i>
+            <div class="score">{{ currentQuestion.score }}</div>
+            <i (click)="setScoreQuestion(-1)" class="material-icons">expand_more</i>
+        </div>
+
+        <div class="col s12 m4 l7">
+          <div>
+              {{ currentQuestion.text }}
+          </div>
+
+          <div class="row padd">
+            <label><a class="modal-trigger" href="#modal1">editar</a></label>
+            <label><a class="">excluir</a></label>
+          </div>
+        </div>
+        
+        <div class="col s12 m4 l2 center-align">
+          <div class="row">
+            <label class="info">perguntado: ontem</label>
+          </div>
+
+          <div class="row">
+              <label class="info">visualizado: 32 vezes</label>
+          </div>
+        </div>      
+      </div>
+
+      <div class="divider"></div>
+      
+      <h5>{{ currentQuestion.answers.length }} respostas</h5>
+
+      <div *ngFor="let answer of currentQuestion.answers" class="row">
+        <div class="col s12 m4 l1 center-align">
+            <i (click)="setScoreAnswer(answer, 1)" class="material-icons">expand_less</i>
+            <div class="score">{{ answer.score}}</div>
+            <i (click)="setScoreAnswer(answer, -1)" class="material-icons">expand_more</i>
+        </div>
+
+        <div class="col s12 m4 l7">
+          <div>
+              {{ answer.text }}
+          </div>
+
+          <div class="row padd">
+            <label>editar</label>
+            <label>exluir</label>
+          </div>
+
+          <div class="divider"></div>
+        </div>
+      </div>
+
+      <h5 class="padd">Sua resposta</h5>
+
+      <div class="row question-info">
+        <form class="col s12" #questionDetailForm="ngForm" id="questionDetailForm" name="questionDetailForm" method="post">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
+              <label for="textarea1">Digite sua resposta</label>
+            </div>
+          </div>
+
+          <button [disabled]="!questionDetailForm.form.valid" class="waves-effect waves-light btn answer-button margin-all"
+          type="submit" name="action" (click)="createAnswer()"><i class="material-icons right">cloud</i>Publique sua resposta</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="col s12 m4 l1"></div>    
+</div>
+
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Editar pergunta</h4>
+    
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="title" type="text" class="validate">
+        <label for="title">Título</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea2" class="materialize-textarea"></textarea>
+            <label for="textarea2">Corpo da pergunta</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="tags" type="text" class="validate">
+        <label for="tags">Tags</label>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Editar</a>
   </div>
 </div>

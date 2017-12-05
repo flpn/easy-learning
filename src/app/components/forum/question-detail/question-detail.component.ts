@@ -12,6 +12,8 @@ import { Question } from '../../../model/question';
 import { Answer } from '../../../model/answer';
 import { User } from '../../../model/user';
 
+declare var $: any;
+
 @Component({
   selector: 'app-question-detail',
   providers: [SiteService],
@@ -28,7 +30,7 @@ export class QuestionDetailComponent implements OnInit {
   index: number;
   currentUser: User;
 
-  constructor(private router: ActivatedRoute, private routerPage: Router,
+  constructor(private router: ActivatedRoute, private route: Router, private routerPage: Router,
      private siteService: SiteService, private db: AngularFireDatabase,
       private auth: AngularFireAuth) {
     this.answer = new Answer();
@@ -36,6 +38,7 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('.modal').modal();    
     this.isLoading = true;
     this.siteService.notLogged();
     this.getKey();
@@ -201,5 +204,14 @@ export class QuestionDetailComponent implements OnInit {
 
   goToForumHome() {
     this.routerPage.navigate([PAGES.forumHome]);
+  }
+
+  goToLogin() {
+    this.route.navigate(['login']);
+  }
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.goToLogin());
   }
 }

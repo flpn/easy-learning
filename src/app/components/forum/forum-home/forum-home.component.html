@@ -1,52 +1,42 @@
-<div class="forum-home-container padd-on-top">
-  
-  <ul class="collection with-header">
-    <li class="collection-header">
-      <div class="row">
-        <h5 class="col-md-9">Perguntas recentes </h5>
-        <a (click)="goToCreateQuestion()" class="waves-effect waves-light btn under right">Faça uma pergunta</a>
-        
-        <!-- busca -->
-        <form #findQuestionForm="ngForm" >
-        <input placeholder="Faça sua busca aqui..." required [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
-      </form>
-        <form>
-            <div>
-              <input type="radio" id="contactChoice1"
-               name="contact" checked = "checked" (click)="initializeList()">
-               <label for="contactChoice1">Views</label>
-          
-              <input type="radio" id="contactChoice2"
-               name="contact" (click)="searchQuestionDate()">
-               <label for="contactChoice2">Data</label>
-          
-              <input type="radio" id="contactChoice3"
-               name="contact" (click)="searchQuestion()">
-              <label for="contactChoice3">Tag/Name</label>
-            </div>
-          </form>
-          <!--<a (click)="initializeList()" class="waves-effect waves-light btn under right">Resetar Busca</a>-->
+<nav>
+  <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li><a href="badges.html"><i class="material-icons left">group</i>Grupos</a></li>
+      <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+      </ul>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col s12 m4 l1"></div>
+
+  <div class="col s12 m4 l10">
+    <div class="row padd">
+      <div class="col s3">
+          <h4>Perguntas</h4>
       </div>
-    </li>
-    <li *ngFor="let question of latestQuestions | async" class="collection-item">
-      <div>
-        <a class="question-title" [routerLink]="['/question', question.$key]">{{ question.text }}</a>
+      
+      <div class="input-field col s7">
+        <select>
+          <option value="" disabled selected>Selecione o filtro</option>
+          <option value="1">Visualização</option>
+          <option value="2">Votos</option>
+        </select>
+        <label>Filtro</label>
       </div>
 
-      <div class="row">
-        <div class="inline" [ngClass]="{'green-div': isGoodQuestion(question.score), 'red-div': isBadQuestion(question.score)}">
-          <label for="">{{ question.score }}</label>
-          <label for="">votos</label>
-        </div>
-        <div class="inline" style="margin-left: 5px">
-          <label for="">0</label>
-          <label for="">respostas</label>
-        </div>
-        <div class="inline">
-          <label for="">{{ question.viewed }}</label>
-          <label for="">acessos</label>
-        </div>
+      <div class="col s2 left">
+          <a (click)="goToCreateQuestion()" class="btn-floating btn-large waves-effect waves-light add-button"><i class="material-icons b">add</i></a>
       </div>
-    </li>
-  </ul>
+    </div>
+  
+    <div class="collection">  
+        <a *ngFor="let question of latestQuestions | async" [routerLink]="['/question', question.$key]" class="collection-item">{{ question.title }}</a>
+    </div>
+    </div>
+    
+    <div class="col s12 m4 l1"></div>
 </div>

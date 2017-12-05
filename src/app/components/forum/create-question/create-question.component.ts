@@ -38,4 +38,13 @@ export class CreateQuestionComponent implements OnInit {
   goToForumHome() {
     this.router.navigate([PAGES.forumHome])
   } 
+
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.goToLogin());
+  }
 }

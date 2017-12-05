@@ -1,39 +1,61 @@
-.forum-home-container {
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    background-color: #E1E8E3;
+.nav-wrapper {
+    background-color: #1E467A;
+    padding-left: 5px;
 }
 
-.inline {
-    display: inline;
+.collection .collection-item {
+    color: #1E467A;
 }
 
-.under {
-    z-index: 0;
+.collection .active{
+    background-color: #1E467A;
+    color: white;
 }
 
-.question-title {
+select option {
+    color: #1E467A;    
+}
+
+.collection a {
+    font-size: 20px;
+}
+
+.add-button {
+    background-color: #FFCD05;
+}
+
+.b {
+    color: #1E467A;
+}
+
+.padd {
+    padding-top: 20px;
+}
+
+.header {
+    font-size: 24px;
+}
+
+.score {
+    font-size: 25px;
+}
+
+.answer-button {
+    background-color: #FFCD05;
+    color: #1E467A;    
+}
+
+.question-info {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #1E467A;
+}
+
+.info {
     font-size: 15px;
-    color: #26A69A;
 }
 
-.green-div {
-    background-color: #5FBA7D;
-    border-radius: 5px;
-}
-
-.green-div label {
-    color: white;
-    padding: 3px;
-}
-
-.red-div {
-    background-color: red;
-    border-radius: 5px;
-}
-
-.red-div label {
-    color: white;
-    padding: 3px;
+.margin-all {
+    margin: 10px;
 }
