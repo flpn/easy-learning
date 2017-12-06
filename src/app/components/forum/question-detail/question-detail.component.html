@@ -1,149 +1,14 @@
-<!-- <div class="question-detail-container padd-on-top" >
-  <div *ngIf="!isLoading" class="card-panel">
-
-    <div class="question-detail-info">
-      <p class="question-title">{{ currentQuestion.title }}
-      
-      <div class="divider"></div>
-
-      <div class="row col s12">
-        <div class="col s2">
-          
-          <div>
-            <label class="thumbs-green" for="" (click)="setScoreQuestion(1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
-            {{ currentQuestion.score }}
-            <label class="thumbs-red" for="" (click)="setScoreQuestion(-1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>
-          </div>
-
-        </div>
-        <div class="col s10">
-          <p>{{ currentQuestion.text }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <p class="col offset-s2">{{ currentQuestion.tags }}</p>
-      </div>
-
-      <div class="divider"></div>      
-      <div class="row col s12">
-          <div *ngIf="checkUser(currentQuestion.user)" >
-              <div>
-                <label data-toggle="modal" data-target="#myModal">editar</label>
-                <label (click)="deleteQuestion()" >deletar</label>
-              </div>
-    
-                Modal Update Question
-                  <div class="modal fade" id="myModal" role="dialog"
-                    tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-    
-                      Modal content
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">{{ currentQuestion.title }}</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>
-                            <textarea [(ngModel)]="currentQuestion.text" id="questionDescriptionUpdate" name="questionDescriptionUpdate" class="materialize-textarea" required></textarea>
-                          </p>
-    
-                          <p>
-                            <textarea [(ngModel)]="currentQuestion.tags" id="questionTagsUpdate" name="questionTagsUpdate" class="materialize-textarea" required></textarea>
-                          </p>
-    
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal"
-                          (click)="updateQuestion()">Atualizar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  Fim modal            
-            </div>
-        <div class="user-info col offset-s10">
-          <span class="question-date">perguntado em {{ currentQuestion.published | date: 'dd/MM/yyyy' }}</span>
-          <img class="user-image" src="{{ questionUser.profileImage }}">
-          <span>{{ questionUser.name }}</span>
-        </div>
-      </div>
-    </div>
-
-    TODO
-    <div class="best-answer" *ngIf="currentQuestion.bestAnswer">
-      <p class="question-title">Melhor resposta</p>
-      
-      <h6>{{ currentQuestion.bestAnswer.text }}</h6>
-      <div class="divider"></div>            
-    </div>
-
-    <p *ngIf="!currentQuestion.answers" class="question-title">0 respostas</p>    
-    <div *ngIf="currentQuestion.answers" class="question-detail-answers">
-      <p class="question-title">{{ currentQuestion.answers.length }} respostas</p>
-      
-      <div class="answers">
-        <ul>
-          <li *ngFor="let answer of currentQuestion.answers; let i = index" [attr.data-index]="i" >
-            <div *ngIf="hideBestAnswer(answer)">
-              
-                <i *ngIf="checkUser(currentQuestion.user)" class="fa fa-check" (click)="bestAnswer(answer)" aria-hidden="true"></i>
-                
-                <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
-                  {{ answer.score}}
-                <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label>
-                {{ answer.text }}
-                
-                <div *ngIf="checkUser(answer.user)">
-                  <button type="button" class="material-icons" 
-                    style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
-
-                    <button type="button" 
-                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
-
-                    <label for="" (click)="edit(answer)">editar</label>
-                    <label for="" (click)="removeAnswer(answer)">remover</label>                      
-
-                    <div *ngIf="(i === index) && show">
-                        <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
-                        <button type="button" class="btn waves-effect waves-light"
-                        (click)="updateAnswer(answer, index)">Atualizar</button>                        
-                    </div>
-                </div>
-
-              <div class="divider"></div>                      
-            </div>  
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <form #questionDetailForm="ngForm" class="col-s12" id="questionDetailForm" name="questionDetailForm" method="post">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
-          <label for="answer">Sua resposta</label>
-        </div>
-      </div>
-
-      <button [disabled]="!questionDetailForm.form.valid" class="btn waves-effect waves-light"
-        type="submit" name="action" (click)="createAnswer()">Poste sua resposta</button>
-    </form>
-  </div>
-</div> -->
-
 <nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
-        <li><a href="badges.html"><i class="material-icons left">group</i>Grupos</a></li>
-        <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
-        <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
-        </ul>
-    </div>
-  </nav>
+  <div class="nav-wrapper">
+      <a [routerLink]="['/home']" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+      </ul>
+  </div>
+</nav>
 
   <div class="row">
     <div class="col s12 m4 l1"></div>
@@ -166,15 +31,15 @@
               {{ currentQuestion.text }}
           </div>
 
-          <div class="row padd">
+          <div class="row padd" *ngIf="checkUser(currentQuestion.user)">
             <label><a class="modal-trigger" href="#modal1">editar</a></label>
-            <label><a class="">excluir</a></label>
+            <label><a class="" (click)="deleteQuestion()">excluir</a></label>
           </div>
         </div>
         
         <div class="col s12 m4 l2 center-align">
           <div class="row">
-            <label class="info">perguntado: ontem</label>
+            <label class="info">perguntado: {{ currentQuestion.published | date: 'dd/MM/yyyy' }}</label>
           </div>
 
           <div class="row">
@@ -185,26 +50,36 @@
 
       <div class="divider"></div>
       
-      <h5>{{ currentQuestion.answers.length }} respostas</h5>
-
-      <div *ngFor="let answer of currentQuestion.answers" class="row">
-        <div class="col s12 m4 l1 center-align">
-            <i (click)="setScoreAnswer(answer, 1)" class="material-icons">expand_less</i>
-            <div class="score">{{ answer.score}}</div>
-            <i (click)="setScoreAnswer(answer, -1)" class="material-icons">expand_more</i>
-        </div>
-
-        <div class="col s12 m4 l7">
-          <div>
-              {{ answer.text }}
+      <h5 *ngIf="!currentQuestion.answers">0 respostas</h5>
+      
+      <div *ngIf="currentQuestion.answers">
+        <h5>{{ currentQuestion.answers.length }} respostas</h5>
+  
+        <div *ngFor="let answer of currentQuestion.answers; let i = index" class="row">
+          <div class="col s12 m4 l1 center-align">
+              <i (click)="setScoreAnswer(answer, 1)" class="material-icons">expand_less</i>
+              <div class="score">{{ answer.score}}</div>
+              <i (click)="setScoreAnswer(answer, -1)" class="material-icons">expand_more</i>
           </div>
-
-          <div class="row padd">
-            <label>editar</label>
-            <label>exluir</label>
+  
+          <div class="col s12 m4 l7">
+            <div>
+                {{ answer.text }}
+            </div>
+  
+            <div class="row padd" *ngIf="checkUser(answer.user)">
+              <label (click)="edit(answer)">editar</label>
+              <label (click)="removeAnswer(answer)">exluir</label>
+            </div>
+           
+            <div *ngIf="(i === index) && show">
+                <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
+                <button type="button" class="btn waves-effect waves-light answer-button"
+                (click)="updateAnswer(answer, index)">Atualizar</button>                        
+            </div>
+  
+            <div class="divider"></div>
           </div>
-
-          <div class="divider"></div>
         </div>
       </div>
 
@@ -233,17 +108,16 @@
     <h4>Editar pergunta</h4>
     
     <div class="row">
-      <div class="input-field col s12">
-        <input id="title" type="text" class="validate">
-        <label for="title">Título</label>
-      </div>
+      <div class="divider"></div>        
+      <h3>{{ currentQuestion.title }}</h3>
+      <div class="divider"></div>
     </div>
 
     <div class="row">
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="textarea2" class="materialize-textarea"></textarea>
+            <textarea [(ngModel)]="currentQuestion.text" id="questionDescriptionUpdate" name="questionDescriptionUpdate" class="materialize-textarea" required></textarea>
             <label for="textarea2">Corpo da pergunta</label>
           </div>
         </div>
@@ -252,13 +126,13 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="tags" type="text" class="validate">
+        <input type="text" class="validate" [(ngModel)]="currentQuestion.tags" id="questionTagsUpdate" name="questionTagsUpdate" required>
         <label for="tags">Tags</label>
       </div>
     </div>
 
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Editar</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat " (click)="updateQuestion()">Editar</a>
   </div>
 </div>

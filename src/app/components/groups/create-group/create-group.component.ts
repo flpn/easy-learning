@@ -57,5 +57,12 @@ export class CreateGroupComponent implements OnInit {
     });
   }
 
-  
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.goToLogin());
+  }
 }

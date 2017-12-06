@@ -83,8 +83,15 @@ export class GroupsHomeComponent implements OnInit {
 
   verifyUser1() {
     this.afDatabase.list(ENTITIES.group)
+  }
 
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
 
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.goToLogin());
   }
 
 }

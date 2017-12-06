@@ -1,5 +1,58 @@
+<nav>
+    <div class="nav-wrapper">
+        <a [routerLink]="['/home']" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+        <li class="active"><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+        <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+        <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+        </ul>
+    </div>
+  </nav>
+  
 
-  <div class="forum-home-container padd-on-top">
+<div class="row">
+    <div class="col s12 m4 l1"></div>
+
+    <div class="col s12 m4 l10">
+      <div class="row padd">
+        <div class="col s11">
+          <h3><i class="medium material-icons left">group</i>Grupos</h3>
+        </div>
+        <div class="col s1 left">
+          <a class="btn-floating btn-large waves-effect waves-light add-button" (click)="createGroup()"><i class="material-icons b">add</i></a>        
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+          <div class="card col s3" *ngFor="let group of groupList | async">
+            <div class="card-image waves-effect waves-block waves-light">
+  
+              <img *ngIf="group.groupImage" class="activator" src={{group.groupImage}}>        
+              <img *ngIf="!group.groupImage || group.groupImage === ''" class="activator" src="https://www.elegantthemes.com/blog/wp-content/uploads/2017/07/programming-languages-to-learn-for-wordpress-featured-image.png">
+            </div>
+            
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">{{ group.title }}<i class="material-icons right">more_vert</i></span>
+              <p><a *ngIf="verifyUser(group)" (click)="subscribe(group.$key)">Inscrever-se</a></p>
+              <p><a *ngIf="!verifyUser(group)" ([routerLink]="['/group', group.$key]">Entrar</a></p>
+            </div>
+            
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{ group.title }}<i class="material-icons right">close</i></span>
+              <p>{{ group.description }}</p>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+    <div class="col s12 m4 l1"></div>    
+</div>
+
+
+  <!-- <div class="forum-home-container padd-on-top">
     
     <ul class="collection with-header">
       <li class="collection-header">
@@ -12,7 +65,6 @@
   </div>
 
 <div class="padd-on-top groups-home-container">
-  <!-- <span>Group-home works</span> -->
 
 
   <div class="row" >
@@ -40,4 +92,4 @@
     
   </div>
 
-</div>
+</div> -->
