@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 
 import { ROUTES, COMPONENTS, PARTIAL_COMPONENTS } from './app.routing';
 import { CreateGroupComponent } from './components/groups/create-group/create-group.component';
+import { CreateQuestionGroupComponent } from './components/groups/create-question-group/create-question-group.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CreateGroupComponent } from './components/groups/create-group/create-gr
     ...COMPONENTS,
     ...PARTIAL_COMPONENTS,
     CreateGroupComponent,
+    CreateQuestionGroupComponent,
   ],
   imports: [
     BrowserModule,

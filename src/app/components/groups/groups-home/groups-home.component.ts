@@ -35,7 +35,6 @@ export class GroupsHomeComponent implements OnInit {
   ngOnInit() {
     this.groupList = this.afDatabase.list(ENTITIES.group)
     this.getUser()
-    // this.verifyUser1()
   }
 
   createGroup(){
@@ -76,15 +75,8 @@ export class GroupsHomeComponent implements OnInit {
     }
 
   verifyUser(group: Group): boolean{
-    // console.log(group.subscribers.includes(this.currentUser))
     return !group.subscribers.includes(this.currentUser)
-
   }
 
-  verifyUser1() {
-    this.afDatabase.list(ENTITIES.group)
-
-
-  }
-
+ 
 }
