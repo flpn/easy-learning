@@ -29,10 +29,12 @@ export class ForumHomeComponent implements OnInit {
   str: string
   currentUser: User;
   scoreCurrent: Number
+  isLoading: boolean;
 
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   ngOnInit() {
+    this.isLoading = true;
     $('select').material_select();    
     this.initializeList();
     this.getUser();
@@ -43,7 +45,7 @@ export class ForumHomeComponent implements OnInit {
       query: {
         orderByChild: 'score'
       }
-    }).map((array) => array.reverse())
+    }).map((array) => array.reverse());
   }
 
   goToCreateQuestion() {
@@ -94,7 +96,8 @@ export class ForumHomeComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
-            this.scoreCurrent = this.currentUser.score
+            this.scoreCurrent = this.currentUser.score;
+            this.isLoading = false;
           }
         });
     });
