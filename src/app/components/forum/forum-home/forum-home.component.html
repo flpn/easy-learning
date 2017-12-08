@@ -1,56 +1,3 @@
-<!-- <nav>
-  <div class="nav-wrapper">
-      <a [routerLink]="['/home']" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
-      <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
-      <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
-      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
-      </ul>
-  </div>
-</nav>
-
-<div class="row">
-  <div class="col s12 m4 l1"></div>
-
-  <div class="col s12 m4 l10">
-    <div class="row padd">
-      <div class="col s3">
-          <h4><i class="material-icons medium left">forum</i>Perguntas</h4>
-      </div>
-
-      <div class="input-field col s4">
-        <form #findQuestionForm="ngForm" >
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" required [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
-          <label for="icon_prefix">Faça sua busca...</label>
-        </form>
-      </div>
-      
-      <div class="input-field col s3">
-        <form>
-          <select>
-            <option value="" selected (click)="initializeList()">Visualização</option>
-            <option value="1" (click)="searchQuestionDate()">Data</option>
-            <option value="2" (click)="searchQuestion()">Tag/Nome</option>
-          </select>
-          <label>Filtro</label>
-        </form>
-      </div>
-
-      <div class="col s2 left">
-          <a (click)="goToCreateQuestion()" class="btn-floating btn-large waves-effect waves-light add-button"><i class="material-icons b">add</i></a>
-      </div>
-    </div>
-  
-    <div class="collection">  
-        <a *ngFor="let question of latestQuestions | async" [routerLink]="['/question', question.$key]" class="collection-item">{{ question.title }}</a>
-    </div>
-    </div>
-    
-    <div class="col s12 m4 l1"></div>
-</div> -->
-
 <nav class="light-blue lighten-1" role="navigation">
   <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
     <ul class="right hide-on-med-and-down">
@@ -95,8 +42,6 @@
     </div>
   </div>
 </div>
-
-
 
 <div class="container">
   <div class="section">
