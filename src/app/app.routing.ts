@@ -11,7 +11,7 @@ import { GroupDetailComponent } from './components/groups/group-detail/group-det
 import { CreateGroupComponent } from './components/groups/create-group/create-group.component';
 
 export const ROUTES: Routes = [
-    { path: '', redirectTo: 'groupsHome', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signUp', component: SignUpComponent },
     { path: 'home', component: HomeComponent },
