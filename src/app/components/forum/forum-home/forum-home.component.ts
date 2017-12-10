@@ -14,6 +14,8 @@ import { SiteService } from '../../../services/site.service';
 import { Question } from '../../../model/question';
 import { User } from '../../../model/user';
 
+declare var $: any;
+
 @Component({
   selector: 'app-forum-home',
   providers: [SiteService],
@@ -27,10 +29,13 @@ export class ForumHomeComponent implements OnInit {
   str: string
   currentUser: User;
   scoreCurrent: Number
+  isLoading: boolean;
 
   constructor(private siteService: SiteService, private router: Router, private auth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   ngOnInit() {
+    this.isLoading = true;
+    $('select').material_select()
     this.initializeList();
     this.getUser();
   }
@@ -91,7 +96,8 @@ export class ForumHomeComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
-            this.scoreCurrent = this.currentUser.score
+            this.scoreCurrent = this.currentUser.score;
+            this.isLoading = false;
           }
         });
     });
