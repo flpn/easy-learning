@@ -1,0 +1,54 @@
+<div class="question-detail-container padd-on-top" >
+  <div *ngIf="!isLoading" class="card-panel">
+
+    <div class="question-detail-info">
+      <p class="question-title">Exercicios
+      
+      <div class="divider"></div>
+
+      <div class="divider"></div>      
+      
+      
+    </div>
+
+    <!-- TODO -->  
+      <div class="answers">
+        <ul>
+          <ul *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" >
+              
+                <!-- <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
+                  {{ answer.score}}
+                <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label> -->
+                {{ questions.title }}
+                <li *ngFor="let alternative of questions.alternative">
+                  {{alternative.text}}
+
+                </li>
+      
+                <!-- <div *ngIf="checkUser(answer.user)">
+                  <button type="button" class="material-icons" 
+                    style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
+
+                    <button type="button" 
+                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
+
+                    <label for="" (click)="edit(answer)">editar</label>
+                    <label for="" (click)="removeAnswer(answer)">remover</label>                      
+
+                    <div *ngIf="(i === index) && show">
+                        <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
+                        <button type="button" class="btn waves-effect waves-light"
+                        (click)="updateAnswer(answer, index)">Atualizar</button>                        
+                    </div>
+                </div> -->
+
+              <div class="divider"></div> 
+              </ul>
+        </ul>                     
+            </div>  
+          <!-- </li>
+        </ul> -->
+      <!-- </div> -->
+  
+    </div>
+</div>

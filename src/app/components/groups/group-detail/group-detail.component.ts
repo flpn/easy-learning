@@ -102,5 +102,9 @@ export class GroupDetailComponent implements OnInit {
     this.routerPage.navigate([PAGES.createQuestionGroup, this.currentGroup.$key])
   }
 
+  questions(){
+    this.routerPage.navigate([PAGES.questionsGroup, this.currentGroup.$key])
+  }
+
 
 }

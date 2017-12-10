@@ -7,7 +7,8 @@ export const PAGES =  {
     createQuestion: '/createQuestion',
     createGroup: '/createGroup',
     groupHome: '/groupsHome',
-    createQuestionGroup: '/createQuestionGrop'
+    createQuestionGroup: '/createQuestionGrop',
+    questionsGroup: '/questionsGruoup'
 }
 
 export const NO_AUTHORIZED_PAGES = {
