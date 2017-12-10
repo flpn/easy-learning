@@ -1,32 +1,60 @@
-#login-page {
-  /* background-color: #a9fff6;   */
-  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcoffee-2511065_1920.jpg?alt=media&token=952f4068-f1bb-435a-a70d-70377c9fdf61)
-  no-repeat center center;
+.crs {
+  background-color: white;
+  height: 100vh;
+}
+
+.frm {
+  color: #29B6F6;
+  height: 100vh;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.sign-up {
+  cursor: pointer;
+}
+
+.google-button {
+  background-color: #DC4E41;
+}
+
+.facebook-button {
+  background-color: #3B5998;
+}
+
+.crs3 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcode-1839406_640.jpg?alt=media&token=0681cc63-bd17-4e28-91c1-910171c1a157);  
+}
+
+.crs2 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Flaptop-2452814_640.jpg?alt=media&token=40ea2e76-34e3-4720-acd7-b48654d6c19a);  
+}
+
+.crs1 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcomputer-1185626_1920.jpg?alt=media&token=767770b2-9345-40c3-9841-735e5cd2fcc1);  
+}
+
+.full {
+  /* no-repeat center center; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* height:100vh; */
+  height: 100vh;
 }
 
-.login-card{
-  background-color: #ffffff;      
-  opacity: .85;
-}
-.profile-image-login {
-  width: 230px;
+.slides {
+  height: 100%!important;
 }
 
-.login-form-text {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  font-family: "Roboto", sans-serif !important;
-  font-weight: normal;
-  color: rgba(0,0,0,0.87);
+.no-padding {
+  padding: 0;
 }
 
-.links {
-  cursor: pointer;
+
+.header-brand {
+  font-size: 1.28em;
+  color: orange;
 }

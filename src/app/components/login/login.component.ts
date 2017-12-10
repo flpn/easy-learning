@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase) { }
 
   ngOnInit() {
+    $('.slider').slider({ height: window.innerHeight - 40 });
     this.isLogged();
    }
 
