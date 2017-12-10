@@ -1,0 +1,29 @@
+<div class="create-question-container padd-on-top">
+  <div class="create-question">    
+    <h3 class="title">Crie sua pergunta</h3>
+    <div class="divider"></div>
+
+    <form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
+          <label for="disabled">Título</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea [(ngModel)]="newAlternative.text" id="body" name="body" class="materialize-textarea" required></textarea>
+          <label for="body">Alternativas</label>
+        </div>
+      </div>
+
+      <button  class="btn waves-effect waves-light margin-button"
+      type="submit" name="action" (click)="saveAlternative()">Salvar alternativa</button>
+    
+      <button  class="btn waves-effect waves-light margin-button"
+      type="submit" name="action" (click)="createQuestion()">Postar pergunta</button>
+
+    </form>
+  </div>  
+</div>

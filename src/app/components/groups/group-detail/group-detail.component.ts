@@ -29,7 +29,6 @@ export class GroupDetailComponent implements OnInit {
 
       this.newPost = new GroupPosts();
       this.currentGroup = new Group();
-      // this.currentGroup.groupPosts
   }
 
   ngOnInit() {
@@ -37,8 +36,6 @@ export class GroupDetailComponent implements OnInit {
     this.getKey();
     
     this.getUser() 
-    // this.checkGroupList()
-    // this.postList = this.currentGroup.groupPosts;
  }
 
   checkGroupList(){
@@ -80,9 +77,7 @@ export class GroupDetailComponent implements OnInit {
     this.newPost.user = this.currentUser;   
     this.currentGroup.groupPosts.push(this.newPost);
     this.siteService.update<Group>(ENTITIES.group, this.currentGroup.$key, this.currentGroup)
-    // this.siteService.createGroup(this.currentGroup)
-    // console.log(this.newPost.text)
-  }
+   }
 
   checkUser(userKey: string): boolean {
     return userKey === this.currentGroup.adm.uid
@@ -98,5 +93,18 @@ export class GroupDetailComponent implements OnInit {
     
     this.siteService.update<Group>(ENTITIES.group, this.currentGroup.$key, this.currentGroup)
   }
+
+  checkAdm(): boolean {
+    return this.currentGroup.adm.uid === this.currentUser.uid
+  }
+
+  creatQuestion(){
+    this.routerPage.navigate([PAGES.createQuestionGroup, this.currentGroup.$key])
+  }
+
+  questions(){
+    this.routerPage.navigate([PAGES.questionsGroup, this.currentGroup.$key])
+  }
+
 
 }

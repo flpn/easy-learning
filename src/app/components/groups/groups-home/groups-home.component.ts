@@ -24,18 +24,17 @@ export class GroupsHomeComponent implements OnInit {
   groupList: Observable<any>;
   currentGroup: Group;
   currentUser: User;
+  teste: User;
   show: boolean
 
   constructor(private router: Router, private afAuth: AngularFireAuth,
      private afDatabase: AngularFireDatabase, private db: AngularFireDatabase,
      private auth: AngularFireAuth,private siteService: SiteService) {
-  
    }
 
   ngOnInit() {
     this.groupList = this.afDatabase.list(ENTITIES.group)
     this.getUser()
-    // this.verifyUser1()
   }
 
   createGroup(){
@@ -54,10 +53,14 @@ export class GroupsHomeComponent implements OnInit {
           this.currentGroup = group
             if(!this.currentGroup.requests){
               this.currentGroup.requests = []  
-            } 
-            this.currentGroup.requests.push(this.currentUser)
-            this.siteService.update(ENTITIES.group, key, this.currentGroup)
-            console.log("solicitação enviada")  
+            }
+            if(group.requests.filter(user => user.uid === this.currentUser.uid).length == 0){
+              this.currentGroup.requests.push(this.currentUser)
+              this.siteService.update(ENTITIES.group, key, this.currentGroup)  
+              console.log("solicitação enviada")              
+            }else{
+              alert("aguarde confirmação")
+            }
           } 
         })
       )

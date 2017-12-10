@@ -56,7 +56,6 @@ export class QuestionDetailComponent implements OnInit {
   findQuestion(questionKey: string) {
     this.siteService.find<Question>(ENTITIES.question, questionKey).then(question => {
       this.currentQuestion = question;
-      // this.isLoading = false;
     })
   }
 
