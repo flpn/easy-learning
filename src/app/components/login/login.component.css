@@ -63,7 +63,7 @@
 } */
 
 .crs {
-  background-color: orangered;
+  background-color: white;
   height: 100vh;
 }
 
@@ -78,4 +78,47 @@
 
 .sign-up {
   cursor: pointer;
+}
+
+.google-button {
+  background-color: #DC4E41;
+}
+
+.facebook-button {
+  background-color: #3B5998;
+}
+
+.crs3 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcode-1839406_640.jpg?alt=media&token=0681cc63-bd17-4e28-91c1-910171c1a157);  
+}
+
+.crs2 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Flaptop-2452814_640.jpg?alt=media&token=40ea2e76-34e3-4720-acd7-b48654d6c19a);  
+}
+
+.crs1 {
+  background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcomputer-1185626_1920.jpg?alt=media&token=767770b2-9345-40c3-9841-735e5cd2fcc1);  
+}
+
+.full {
+  /* no-repeat center center; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+}
+
+.slides {
+  height: 100%!important;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+
+.header-brand {
+  font-size: 1.28em;
+  color: orange;
 }
