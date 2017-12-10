@@ -1,59 +1,59 @@
-<nav>
-  <div class="nav-wrapper">
-      <a [routerLink]="['/home']" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
       <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
       <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
-      <li><a href="collapsible.html"><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
       <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
-      </ul>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
 </nav>
 
-<div class="row">
-
-  <div class="col s12 m4 l3"></div>
-
-  <div class="col s12 m4 l6">
-    <h3><i class="medium material-icons left">border_color</i>Crie sua pergunta</h3>
-    <div class="divider"></div>
-
-    <form form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">title</i>
-              <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
-              <label for="email" data-error="wrong" data-success="right">Título</label>
-            </div>
-          </div>
-      </div>
-  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">subtitles</i>
-              <textarea [(ngModel)]="newQuestion.text" id="body" name="body" class="materialize-textarea" required></textarea>          
-              <label for="email" data-error="wrong" data-success="right">Corpo da pergunta</label>
-            </div>
-          </div>
-      </div>
-  
-      <div class="row">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">local_offer</i>
-              <input [(ngModel)]="newQuestion.tags" type="text" id="tags" name="tags" class="autocomplete" required>          
-              <label for="email" data-error="wrong" data-success="right">Tags</label>
-            </div>
-          </div>
-      </div>
-
-      <button [disabled]="!createQuestionForm.form.valid" class="waves-effect waves-light btn answer-button margin-all right"
-      type="submit" name="action" (click)="createQuestion()"><i class="material-icons right">cloud</i>Publique sua pergunta</button>
-    </form>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <h2 class="header orange-text"><i class="medium material-icons left">border_color</i>Crie sua pergunta</h2>
+    
+    <div class="row">
+      <p>Pergunte de maneira clara e objetiva :)</p>
+      <div class="divider"></div>
+    </div>
   </div>
-  
-  <div class="col s12 m4 l3"></div>
+</div>
 
+<div class="container">
+  <div class="section">
+    <form form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">title</i>
+            <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
+            <label for="email" data-error="wrong" data-success="right">Título</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">subtitles</i>
+            <textarea [(ngModel)]="newQuestion.text" id="body" name="body" class="materialize-textarea" required></textarea>          
+            <label for="email" data-error="wrong" data-success="right">Corpo da pergunta</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">local_offer</i>
+            <input [(ngModel)]="newQuestion.tags" type="text" id="tags" name="tags" class="autocomplete" required>          
+            <label for="email" data-error="wrong" data-success="right">Tags</label>
+          </div>
+        </div>
+
+        <button [disabled]="!createQuestionForm.form.valid" class="waves-effect waves-light btn margin-all orange right"
+        type="submit" name="action" (click)="createQuestion()"><i class="material-icons right">submit</i>Publique sua pergunta</button>
+    </form>          
+  </div>
 </div>
