@@ -6,21 +6,21 @@
     <form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
       <div class="row">
         <div class="input-field col s12">
-          <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
+          <input required ="newQuestion.title" id="title" name="title" type="text" class="validate" required>
           <label for="disabled">Título</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <textarea [(ngModel)]="newQuestion.text" id="body" name="body" class="materialize-textarea" required></textarea>
+          <textarea required [(ngModel)]="newQuestion.text" id="body" name="body" class="materialize-textarea" required></textarea>
           <label for="body">Detalhes</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input [(ngModel)]="newQuestion.tags" type="text" id="tags" name="tags" class="autocomplete" required>
+          <input required [(ngModel)]="newQuestion.tags" type="text" id="tags" name="tags" class="autocomplete" required>
           <label for="tags">Tags</label>
         </div>
       </div>
