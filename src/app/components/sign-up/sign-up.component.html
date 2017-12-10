@@ -1,80 +1,58 @@
-<div class="row" id="sign-up-page" >
-    <div class="col-md-3">        
-</div> 
-
-<div class="sign-up-container row" id="card-panel-signUp">   
-  <div class="row col-md-6 z-depth-4 card-panel">
-    <div class="sign-up-text">
-      <h4>Cadastre-se</h4>
-      <span>Grupos de estudos, vídeos, fórum, exercícios e muito mais</span>
-    </div>
-
-    <div class="divider"></div>
+<div class="row" id="sign-up-page">
+  
+    <div class="col s12 m4 l3"></div>
     
-    <form  class="col s12" #signUpForm="ngForm" id="signUpForm" name="signUpForm" method="post">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="name" name="name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.name">
-          <label for="name" data-error="O nome deve ter no mínimo 2 caracteres">Nome</label>
+    <div class="col s12 m4 l6 sign-up-container row" id="card-panel-signUp">
+      <div class="row z-depth-4 card-panel">
+        <div class="sign-up-text center-align">
+          <h4>Cadastre-se</h4>
+          <span>Grupos de estudos, vídeos, fórum, exercícios e muito mais</span>
         </div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>          
-          <input id="last-name" name="last-name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.lastname">
-          <label for="last-name" data-error="O sobrenome deve ter no mínimo 2 caracteres">Sobrenome</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <i class="material-icons prefix">email</i>                    
-          <input id="email" name="email" type="email" class="validate" maxlength="50" required [(ngModel)]="newUser.email">
-          <label for="email" data-error="Digite um formato de email válido">Email</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">lock_outline</i>          
-          <input id="password" name="password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="password">
-          <label for="password" data-error="A senha deve conter entre 6 e 20 caracteres">Senha</label>
-        </div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">lock_outline</i>                    
-          <input id="confirm-password" name="confirm-password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="confirmPassword">
-          <label for="confirm-password">Confirmar</label>
-        </div>
-      </div>
-
-      <button [disabled]="!signUpForm.form.valid" class="col-md-offset-4 waves-effect waves-light btn-large btn-create" (click)="signUp()">CADASTRAR
-         <i class="material-icons right">send</i>
-      </button>
-    </form>
+        
+        <div class="divider"></div>
+          
+        <form  class="col s12" #signUpForm="ngForm" id="signUpForm" name="signUpForm" method="post">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="name" name="name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.name">
+              <label for="name" data-error="O nome deve ter no mínimo 2 caracteres">Nome</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">account_circle</i>          
+              <input id="last-name" name="last-name" type="text" class="validate" minlength="2" maxlength="15" required [(ngModel)]="newUser.lastname">
+              <label for="last-name" data-error="O sobrenome deve ter no mínimo 2 caracteres">Sobrenome</label>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>                    
+              <input id="email" name="email" type="email" class="validate" maxlength="50" required [(ngModel)]="newUser.email">
+              <label for="email" data-error="Digite um formato de email válido">Email</label>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">lock_outline</i>          
+              <input id="password" name="password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="password">
+              <label for="password" data-error="A senha deve conter entre 6 e 20 caracteres">Senha</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">lock_outline</i>                    
+              <input id="confirm-password" name="confirm-password" type="password" class="validate" minlength="6" maxlength="20" required [(ngModel)]="confirmPassword">
+              <label for="confirm-password">Confirmar</label>
+            </div>
+          </div>
+    
+          <button [disabled]="!signUpForm.form.valid" class="col-md-offset-4 waves-effect waves-light btn-large orange" (click)="signUp()">CADASTRAR
+              <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>    
+    </div>
+    
+    <div class="col s12 m4 l3"></div>  
+  
   </div>
- </div>
- <!-- fim cadastro -->
-
-<div class="row">
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Easy Learning</h5>
-          <p class="grey-text text-lighten-4">Venha fazer parte da nossa comunidade.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="https://github.com/flpn/easy-learning">Source code repository</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      © 2017 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="http://www.faculdadenovaroma.com.br/">Faculdade Nova Roma</a>
-      </div>
-    </div>
-  </footer>
-</div>
