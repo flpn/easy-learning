@@ -25,7 +25,7 @@
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{group.title}}<i class="material-icons right">more_vert</i></span>
           
-          <p><a *ngIf="verifyUser(group)" (click)="subscribe(group.$key)">Inscrever-se</a></p>
+          <p><a *ngIf="!verifyUser(group)" (click)="subscribe(group.$key)">Inscrever-se</a></p>
           
           <p><a *ngIf="verifyUser(group)" [routerLink]="['/group', group.$key]">Entrar</a></p>
         </div>
