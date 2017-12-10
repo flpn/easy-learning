@@ -1,4 +1,4 @@
-<div id="login-page" class="row">
+<!-- <div id="login-page" class="row">
     <div class="col-md-4">
   </div>
 
@@ -61,5 +61,58 @@
         </div>
 
       </form>
+    </div>
+  </div> -->
+
+
+  <div class="row">
+    <div class="col s6 crs"></div>
+    <div class="col s6 frm light-blue lighten-1">
+      <div class="container">
+        <div class="section card z-depth-4">
+          <h4 class="header center">Bem-vindo ao Easy Learning!</h4>
+            
+          <form #loginForm="ngForm" class="login-form" name="loginForm" id="loginForm" method="post">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input class="validate" id="email" name="email" type="email" [(ngModel)]="email"
+                    maxlength="30" required>
+                  <label for="email x" class="center-align" data-error="Digite um formato de email válido">Email</label>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input class="validate" min="4" id="password" name="password" type="password" [(ngModel)]="password"
+                      maxlength="20" minlength="6" required>
+                    <label for="password" data-error="A senha deve conter entre 6 e 20 caracteres">Senha</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <button [disabled]="!loginForm.form.valid" class="btn waves-effect waves-light col s6 login-button offset-s3" (click)="login()">Entrar
+                    <i class="material-icons right">send</i>
+                  </button> 
+                </div>
+                
+                <div class="row">
+                  <button class="btn waves-effect waves-light col s3 offset-s2" (click)="loginWithFacebook()">Facebook
+                    <i class="material-icons right">send</i>
+                  </button> 
+                  <button class="btn waves-effect waves-light col s3 offset-s2" (click)="loginWithGoogle()">Google
+                    <i class="material-icons right">send</i>
+                  </button> 
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="links input-field">
+                  <p (click)="goToSignUp()" class="center sign-up"><a class="orange-text">Ainda não tem uma conta? Crie uma agora mesmo!</a></p>
+                </div>        
+              </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>

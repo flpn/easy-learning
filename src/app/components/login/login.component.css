@@ -1,5 +1,4 @@
-#login-page {
-  /* background-color: #a9fff6;   */
+/* #login-page {
   background: url(https://firebasestorage.googleapis.com/v0/b/easy-learning-7f4d1.appspot.com/o/imagens%20do%20site%2Fcoffee-2511065_1920.jpg?alt=media&token=952f4068-f1bb-435a-a70d-70377c9fdf61)
   no-repeat center center;
   -webkit-background-size: cover;
@@ -61,4 +60,22 @@
 
 .btn:hover {
   background-color: #FFCD05;
+} */
+
+.crs {
+  background-color: orangered;
+  height: 100vh;
+}
+
+.frm {
+  color: #29B6F6;
+  height: 100vh;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.sign-up {
+  cursor: pointer;
 }
