@@ -41,7 +41,6 @@ export class QuestionDetailComponent implements OnInit {
     this.getKey();
 
     this.getUser()
-    this.isLoading = false;
   }
 
   getKey() {
@@ -189,6 +188,7 @@ export class QuestionDetailComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
+            this.isLoading = false;    
           }
         });
       });
