@@ -4,8 +4,12 @@
 }
 
 .frm {
-  color: #29B6F6;
   height: 100vh;
+  background: #29b6f6; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #29b6f6, #ff9800 ); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #29b6f6, #ff9800); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #29b6f6, #ff9800); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #29b6f6, #ff9800); /* Standard syntax */
 }
 
 .card {
