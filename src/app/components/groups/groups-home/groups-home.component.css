@@ -1,6 +1,6 @@
-.groups-home-container {
+/* .groups-home-container {
     background-color: #E1E8E3;
-}
+} */
 
 .card {
     z-index: 0;
@@ -11,5 +11,21 @@
 }
 
 .card-title {
-    height: 100px;
+    height: 50px;
+}
+
+.margin {
+    margin-right: 50px !important;
+}
+
+.frm {
+    background: #29b6f6; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #ff9800, #29b6f6 ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #ff9800, #29b6f6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #ff9800, #29b6f6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #ff9800, #29b6f6); /* Standard syntax */
+}
+
+.no-padd {
+    padding: 0;
 }

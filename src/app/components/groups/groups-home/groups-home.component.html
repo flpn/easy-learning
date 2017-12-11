@@ -1,43 +1,85 @@
-
-  <div class="forum-home-container padd-on-top">
-    
-    <ul class="collection with-header">
-      <li class="collection-header">
-        <div class="row">
-          <h5 class="col-md-9">Grupos</h5>
-          <a (click)="createGroup()" class="waves-effect waves-light btn under right">Criar um Grupo</a>
-        </div>
-      </li>
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li class="active"><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
     </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
+</nav>
 
-<div class="padd-on-top groups-home-container">
-  <!-- <span>Group-home works</span> -->
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <div class="row valign-wrapper">
+      <h2 class="header orange-text margin"><i class="material-icons medium left">group</i>Grupos</h2>
+      <a class="btn-floating btn-large waves-effect waves-light light-blue lighten-1" (click)="createGroup()"><i class="material-icons">add</i></a>
+    </div>
+    <label for="">Inscreva-se nos grupos de estudos do seu interesse e seja ativo na comunidade. Assim todos saem ganhando!</label>
+    <div class="divider"></div>
+  </div>
+</div>
+<br>
 
 
-  <div class="row" >
-
-    <div class="col-md-3" *ngFor="let group of groupList | async">
-      <div class="card">
+<div class="container">
+  <div class="section">
+    
+    <div *ngIf="isLoading" class="progress">
+      <div class="indeterminate"></div>
+    </div>
+    
+    <div class="row">      
+      <div class="card z-depth-4 margin col s3 no-padd" *ngFor="let group of groupList | async">
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src={{group.groupImage}}>
+          <img *ngIf="!group.groupImage || group.groupImage === ''" class="activator" src="https://www.elegantthemes.com/blog/wp-content/uploads/2017/07/programming-languages-to-learn-for-wordpress-featured-image.png">
+          <img *ngIf="group.groupImage" class="activator" src={{group.groupImage}}>
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{group.title}}<i class="material-icons right">more_vert</i></span>
-          
-          <p><a *ngIf="!verifyUser(group)" (click)="subscribe(group.$key)">Inscrever-se</a></p>
-          
-          <p><a *ngIf="verifyUser(group)" [routerLink]="['/group', group.$key]">Entrar</a></p>
+          <span class="card-title activator grey-text text-darken-4 header">{{ group.title }}<i class="material-icons right">more_vert</i></span>
+          <p><a class="" *ngIf="verifyUser(group)" (click)="subscribe(group.$key)">Inscrever-se</a></p>
+          <p><a class="" *ngIf="!verifyUser(group)" [routerLink]="['/group', group.$key]">Entrar</a></p>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{group.title}}<i class="material-icons right">close</i></span>
-          <p>{{group.description}}</p>
+            <span class="card-title grey-text text-darken-4">{{ group.title }}<i class="material-icons right">close</i></span>
+            <p>{{ group.description }}</p>
         </div>
       </div>
     </div>
-  
-
-    
   </div>
-
 </div>
+
+<footer class="page-footer orange">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Quem somos nós?</h5>
+        <p class="grey-text text-lighten-4">Somos um time de estudantes que, assim como vocês, estamos procurando espalhar o conhecimento da melhor maneira possível :)</p>
+
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Parceiros</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Faculdade Nova Roma</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Código-fonte</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Github</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      Feito por <a class="orange-text text-lighten-3">Felipe Netto, Eduardo Andrade, Renato Bertolino, Mike Shinoda</a>
+    </div>
+  </div>
+</footer>

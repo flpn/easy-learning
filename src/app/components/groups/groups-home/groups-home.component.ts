@@ -26,6 +26,7 @@ export class GroupsHomeComponent implements OnInit {
   currentUser: User;
   teste: User;
   show: boolean
+  isLoading: boolean;
 
   constructor(private router: Router, private afAuth: AngularFireAuth,
      private afDatabase: AngularFireDatabase, private db: AngularFireDatabase,
@@ -33,7 +34,8 @@ export class GroupsHomeComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.groupList = this.afDatabase.list(ENTITIES.group)
+    this.isLoading = true;
+    this.groupList = this.afDatabase.list(ENTITIES.group);
     this.getUser()
   }
 
@@ -72,7 +74,7 @@ export class GroupsHomeComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
-    
+            this.isLoading = false;
           }
         });
       });
