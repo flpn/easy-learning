@@ -1,4 +1,4 @@
-.group-detail-container {
+/* .group-detail-container {
     background-color: #E1E8E3;
 }
 
@@ -15,4 +15,18 @@
 .logo-picture {
     width: 50px; 
     border-radius: 100%;
+} */
+
+.logo-picture {
+    width: 50px; 
+    border-radius: 100%;
+    margin-right: 15px;
+} 
+
+.card {
+    background-color: rgb(238, 238, 238) !important;
+}
+
+.date {
+    color: #29b6f6;
 }

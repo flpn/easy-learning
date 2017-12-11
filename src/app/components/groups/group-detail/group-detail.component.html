@@ -1,5 +1,5 @@
-<div class="padd-on-top group-detail-container">  
-  <!-- <p>group-detail works!</p> -->
+<!-- <div class="padd-on-top group-detail-container">  
+  <p>group-detail works!</p>
 
   <div class="group-detail">
     
@@ -69,5 +69,104 @@
         </div>
       </div>
   
+  </div>
+</div> -->
+
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li class="active"><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
+<div class="section no-pad-bot" id="index-banner">
+
+  <div *ngIf="isLoading" class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <div class="container" *ngIf="!isLoading">
+    <div class="row">
+      <h2 class="header orange-text margin"><i class="material-icons medium left">group</i>{{ currentGroup.title }}</h2>
+      <div class="col s7">
+        <label for="">Criado por: {{ currentGroup.adm.name }}</label>
+      </div>
+      
+      <div class="row col s5">
+        <div class="padding-button col s6">
+          <a *ngIf="checkAdm()" class="waves-effect waves-light btn light-blue lighten-1" style="z-index: 0;" 
+          (click)="creatQuestion()">Criar perguntas</a>
+        </div>
+
+        <div class="padding-button col s6">
+          <a class="waves-effect waves-light btn light-blue lighten-1" style="z-index: 0;" 
+          (click)="questions()">Ir para questões</a>
+        </div>
+      </div>
+    </div>
+        
+    <ul *ngIf="checkUser(currentUser.uid)" class="collection with-header">
+      <li class="collection-header"><h5>Solicitações de usuário</h5></li>
+      <li *ngFor="let item of currentGroup.requests" class="collection-item">
+        <div>{{ item.name + " " + item.lastname}}<a class="secondary-content"><i class="material-icons" (click)="acceptUser(item, 1)">check</i><i (click)="acceptUser(item, 0)" class="material-icons">close</i></a></div>
+      </li>
+    </ul>
+    
+    <div class="divider"></div>
+  </div>
+</div>
+<br>
+
+<div *ngIf="!isLoading" class="container">
+  <div class="section">
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s10">
+            <i class="material-icons prefix">mode_edit</i>
+              <input [(ngModel)]="newPost.text" id="title" name="title" type="text" required>             
+              <label for="icon_prefix2">Novo post</label>
+          </div>
+
+          <div class="padding-button">
+            <a class="waves-effect waves-light btn orange" style="z-index: 0;" (click)="post()">Postar</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row" *ngFor="let post of currentGroup.groupPosts">
+      <div class="col s12">
+        <div class="card-panel card z-depth-4 teal">
+          <div class="row">
+            <div class="col-md-11">
+              <a href="#" class="logo"><img class="logo-picture" src={{post.user.profileImage}}/></a>
+              <h5 class="grey-text text-darken-4 header bold-text" style="display: inline">{{post.user.name}} {{post.user.lastname}}</h5>
+            </div>
+
+            <div>
+              <span class="grey-text text-darken-4">Postado em: <span class="date">{{ post.published | date: 'dd/MM/yyyy' }}</span></span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <br>
+          
+          <h6 class="grey-text text-darken-4">
+            {{post.text}}
+          </h6>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

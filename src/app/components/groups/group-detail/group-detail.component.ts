@@ -23,6 +23,7 @@ export class GroupDetailComponent implements OnInit {
   newPost: GroupPosts;
   postList: GroupPosts[];
   currentUser: User;
+  isLoading: boolean;
   
   constructor(private router: ActivatedRoute, private routerPage: Router, private siteService: SiteService,
      private db: AngularFireDatabase, private auth: AngularFireAuth) { 
@@ -32,6 +33,7 @@ export class GroupDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.siteService.notLogged();
     this.getKey();
     
@@ -64,7 +66,8 @@ export class GroupDetailComponent implements OnInit {
         list.forEach(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
-            }
+            this.isLoading = false;
+          }
         });
     });
   }
