@@ -1,32 +1,60 @@
-<div class="create-group-container padd-on-top">
-  <div class="create-group">    
-    <h3 class="title">Criar Grupo</h3>
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li class="active"><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <div class="row">
+      <h2 class="header orange-text margin"><i class="material-icons medium left">group</i>Criar grupo</h2>
+    </div>
     <div class="divider"></div>
+  </div>
+</div>
+<br>
 
-    <form #createQuestionForm="ngForm" class="col-s12" id="createGroupForm" name="createGroupForm" method="post">
-      <div class="row">
-        <div class="input-field col s12">
-          <input [(ngModel)]="newGroup.title" id="title" name="title" type="text" class="validate" required>
-          <label for="disabled">Título</label>
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <form #createQuestionForm="ngForm" class="col-s12" id="createGroupForm" name="createGroupForm" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">title</i>
+            <input [(ngModel)]="newGroup.title" id="title" name="title" type="text" class="validate" required>
+            <label for="disabled">Título</label>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea [(ngModel)]="newGroup.description" id="body" name="body" class="materialize-textarea" required></textarea>
-          <label for="body">Descrição</label>
+  
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea [(ngModel)]="newGroup.description" id="body" name="body" class="materialize-textarea" required></textarea>
+            <label for="body">Descrição</label>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input [(ngModel)]="newGroup.groupImage" type="text" id="tags" name="tags" class="autocomplete" required>
-          <label for="tags">Imagem</label>
+  
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">image</i>              
+            <input [(ngModel)]="newGroup.groupImage" type="text" id="tags" name="tags" class="autocomplete" required>
+            <label for="tags">Imagem</label>
+          </div>
         </div>
-      </div>
-
-      <button  class="btn waves-effect waves-light margin-button"
-      type="submit" name="action" (click)="createGroup()">Criar Grupo</button>
-    </form>
-  </div>  
+  
+        <button  class="btn waves-effect waves-light margin-button right orange"
+        type="submit" name="action" (click)="createGroup()"><i class="material-icons prefix right">send</i>Criar Grupo</button>
+      </form>
+    </div>
+  </div>
 </div>
