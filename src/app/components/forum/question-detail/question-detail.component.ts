@@ -12,6 +12,8 @@ import { Question } from '../../../model/question';
 import { Answer } from '../../../model/answer';
 import { User } from '../../../model/user';
 
+declare var $: any;
+
 @Component({
   selector: 'app-question-detail',
   providers: [SiteService],
@@ -36,6 +38,7 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('.modal').modal();
     this.isLoading = true;
     this.siteService.notLogged();
     this.getKey();

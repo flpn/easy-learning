@@ -230,8 +230,8 @@
 
           <div *ngIf="(i === index) && show">
               <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
-              <button type="button" class="btn waves-effect waves-light answer-button"
-              (click)="updateAnswer(answer, index)">Atualizar</button>                        
+              <button type="button" class="btn waves-effect waves-light answer-button orange"
+              (click)="updateAnswer(answer, index)">Atualizar</button>
           </div>
 
           <div class="divider"></div>
@@ -254,6 +254,39 @@
         type="submit" name="action" (click)="createAnswer()"><i class="material-icons right">send</i>Publique sua resposta</button>
       </form>
     </div>
+  </div>
+</div>
 
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="orange-text">Editar pergunta</h4>
+    
+    <div class="row">
+      <div class="divider"></div>        
+      <h3>{{ currentQuestion.title }}</h3>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea [(ngModel)]="currentQuestion.text" id="questionDescriptionUpdate" name="questionDescriptionUpdate" class="materialize-textarea" required></textarea>
+            <label for="textarea2">Corpo da pergunta</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" class="validate" [(ngModel)]="currentQuestion.tags" id="questionTagsUpdate" name="questionTagsUpdate" required>
+        <label for="tags">Tags</label>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat " (click)="updateQuestion()">Editar</a>
   </div>
 </div>
