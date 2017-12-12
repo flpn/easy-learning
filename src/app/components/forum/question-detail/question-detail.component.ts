@@ -4,6 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import 'rxjs/add/operator/filter'
+import 'rxjs/add/operator/map'
+
 import { SiteService } from '../../../services/site.service';
 
 import { ENTITIES, SCORE, PAGES } from '../../../utils/constants';
@@ -11,6 +14,8 @@ import { ENTITIES, SCORE, PAGES } from '../../../utils/constants';
 import { Question } from '../../../model/question';
 import { Answer } from '../../../model/answer';
 import { User } from '../../../model/user';
+import { query } from '@angular/core/src/animation/dsl';
+import { equal } from 'assert';
 
 declare var $: any;
 
@@ -29,12 +34,15 @@ export class QuestionDetailComponent implements OnInit {
   answerAux: Answer;
   index: number;
   currentUser: User;
+  usersLists = {}
 
   constructor(private router: ActivatedRoute, private routerPage: Router,
      private siteService: SiteService, private db: AngularFireDatabase,
       private auth: AngularFireAuth) {
-    this.answer = new Answer();
-    this.show = false;
+
+        this.currentQuestion = new Question();
+        this.answer = new Answer();
+        this.show = false;
   }
 
   ngOnInit() {
@@ -44,6 +52,15 @@ export class QuestionDetailComponent implements OnInit {
     this.getKey();
 
     this.getUser()
+    this.inicializateList();
+  }
+
+  inicializateList(){
+    this.db.list(ENTITIES.user).subscribe(list => {
+      list.map(user => {
+        this.usersLists[user.uid] = user
+      })
+    })
   }
 
   getKey() {
@@ -188,7 +205,7 @@ export class QuestionDetailComponent implements OnInit {
   getUser() {
     this.db.list(ENTITIES.user)
       .subscribe(list => {
-        list.forEach(u => {
+        list.map(u => {
           if (this.auth.auth.currentUser.uid === u.uid) {
             this.currentUser = u;
             this.isLoading = false;    
@@ -204,4 +221,17 @@ export class QuestionDetailComponent implements OnInit {
   goToForumHome() {
     this.routerPage.navigate([PAGES.forumHome]);
   }
+
+  incrementAnswer(answer: Answer){
+    this.usersLists[answer.user].score += SCORE.incrementAnswer
+    this.siteService.update<User>(ENTITIES.user, this.usersLists[answer.user].$key, this.usersLists[answer.user])
+   
+  }
+
+  decrementAnswer(answer: Answer){
+    this.usersLists[answer.user].score += SCORE.decrementAnswer
+    this.siteService.update<User>(ENTITIES.user, this.usersLists[answer.user].$key, this.usersLists[answer.user])
+   
+  }
+
 }

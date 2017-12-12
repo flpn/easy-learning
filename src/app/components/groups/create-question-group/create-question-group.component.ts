@@ -51,8 +51,11 @@ export class CreateQuestionGroupComponent implements OnInit {
       this.newQuestion.alternative = []
     }
 
-    this.newQuestion.alternative.push(this.newAlternative)
-    this.newAlternative = new Alternative()
+    if(this.newAlternative.text !== ""){
+      this.newQuestion.alternative.push(this.newAlternative)
+      this.newAlternative = new Alternative()
+    }
+   
   }
 
   createQuestion(){

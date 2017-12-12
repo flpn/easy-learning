@@ -27,7 +27,8 @@ export class GroupDetailComponent implements OnInit {
   
   constructor(private router: ActivatedRoute, private routerPage: Router, private siteService: SiteService,
      private db: AngularFireDatabase, private auth: AngularFireAuth) { 
-
+      
+      this.currentUser = new User();
       this.newPost = new GroupPosts();
       this.currentGroup = new Group();
   }
