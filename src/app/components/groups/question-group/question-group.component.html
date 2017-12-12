@@ -1,4 +1,4 @@
-<div class="question-detail-container padd-on-top" >
+<!-- <div class="question-detail-container padd-on-top" >
   <div *ngIf="!isLoading" class="card-panel">
 
     <div class="question-detail-info">
@@ -11,44 +11,76 @@
       
     </div>
 
-    <!-- TODO -->  
       <div class="answers">
         <ul>
           <ul *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" >
               
-                <!-- <label class="thumbs-green" for="" (click)="setScoreAnswer(answer, 1)"><i class="fa fa-thumbs-up" aria-hidden="true"></i></label>
-                  {{ answer.score}}
-                <label class="thumbs-red" for="" (click)="setScoreAnswer(answer, -1)"><i class="fa fa-thumbs-down" aria-hidden="true"></i></label> -->
                 {{ questions.title }}
                 <li *ngFor="let alternative of questions.alternative">
                   {{alternative.text}}
 
                 </li>
-      
-                <!-- <div *ngIf="checkUser(answer.user)">
-                  <button type="button" class="material-icons" 
-                    style="font-size:20px" (click)="removeAnswer(answer)">&#xe872;</button>
-
-                    <button type="button" 
-                      (click)="edit(answer)" class="material-icons" style="font-size:20px" >&#xe254;</button>
-
-                    <label for="" (click)="edit(answer)">editar</label>
-                    <label for="" (click)="removeAnswer(answer)">remover</label>                      
-
-                    <div *ngIf="(i === index) && show">
-                        <textarea [(ngModel)]="answer.text" id="answer" name="answer" class="materialize-textarea" required></textarea>
-                        <button type="button" class="btn waves-effect waves-light"
-                        (click)="updateAnswer(answer, index)">Atualizar</button>                        
-                    </div>
-                </div> -->
-
               <div class="divider"></div> 
               </ul>
         </ul>                     
             </div>  
-          <!-- </li>
-        </ul> -->
-      <!-- </div> -->
-  
     </div>
+</div> -->
+
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li class="active"><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
+<div class="section no-pad-bot" id="index-banner">    
+  <div class="container" *ngIf="!isLoading">
+    <div class="row">
+      <h2 class="header orange-text margin"><i class="material-icons medium left">import_contacts</i>Questões</h2>
+      <div class="col s12">
+        <label for="">Para responder a questão, basta escolher uma alternativa e prosseguir com a operação</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+
+      <div *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" class="col s12 m12">
+        <div class="card-panel teal">
+          <h4 class="grey-text text-darken-4">{{ questions.title }}</h4>
+          <div class="divider"></div>
+            <form action="#">
+              <p *ngFor="let alternative of questions.alternative" class="with-gap">
+                <!-- <input name="alternatives" type="radio" value="{{ alternative.text }}" id="{{ alternative.text }}" /> -->
+                <input name="alternatives" type="radio" value="1" id="1"/>
+                <label class="grey-text text-darken-4" for="test1">{{ alternative.text }}</label>
+              </p>
+              
+              <div class="row">
+                <button  class="btn waves-effect waves-light orange right"
+                type="submit" name="action">
+                <i class="material-icons right">send</i>Responder questão</button>
+              </div>
+            </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </div>
