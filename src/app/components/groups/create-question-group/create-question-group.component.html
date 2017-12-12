@@ -1,29 +1,62 @@
-<div class="create-question-container padd-on-top">
-  <div class="create-question">    
-    <h3 class="title">Crie sua pergunta</h3>
+<nav class="light-blue lighten-1" role="navigation">
+  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+      <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+      <li class="active"><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+      <li><a (click)="logout()">Sair</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+
+<div class="section no-pad-bot" id="index-banner">    
+  <div class="container" *ngIf="!isLoading">
+    <div class="row">
+      <h2 class="header orange-text margin"><i class="material-icons medium left">import_contacts</i>Novo exercício</h2>
+      <div class="col s12">
+        <label for="">Adicione o corpo e as alternativas recorrentes a sua questão</label>
+      </div>
+    </div>
+
     <div class="divider"></div>
+  </div>
+</div>
+<br>
 
-    <form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
-      <div class="row">
-        <div class="input-field col s12">
-          <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
-          <label for="disabled">Título</label>
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <form #createQuestionForm="ngForm" class="col-s12" id="createQuestionForm" name="createQuestionForm" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">title</i>              
+            <input [(ngModel)]="newQuestion.title" id="title" name="title" type="text" class="validate" required>
+            <label for="disabled">Título</label>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea [(ngModel)]="newAlternative.text" id="body" name="body" class="materialize-textarea" required></textarea>
-          <label for="body">Alternativas</label>
+  
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">format_list_bulleted</i>              
+            <textarea [(ngModel)]="newAlternative.text" id="body" name="body" class="materialize-textarea" required></textarea>
+            <label for="body">Nova alternativa</label>
+          </div>
         </div>
-      </div>
-
-      <button  class="btn waves-effect waves-light margin-button"
-      type="submit" name="action" (click)="saveAlternative()">Salvar alternativa</button>
-    
-      <button  class="btn waves-effect waves-light margin-button"
-      type="submit" name="action" (click)="createQuestion()">Postar pergunta</button>
-
-    </form>
-  </div>  
+  
+        <button  class="btn waves-effect waves-light margin-button orange"
+        type="submit" name="action" (click)="saveAlternative()">
+        <i class="material-icons right">check</i>Salvar alternativa</button>
+      
+        <button  class="btn waves-effect waves-light margin-button orange"
+        type="submit" name="action" (click)="createQuestion()">
+        <i class="material-icons right">send</i>Postar pergunta</button>
+  
+      </form>
+    </div>
+  </div>
 </div>
