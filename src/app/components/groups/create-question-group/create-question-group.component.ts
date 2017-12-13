@@ -21,13 +21,16 @@ export class CreateQuestionGroupComponent implements OnInit {
   newQuestion: QuestionGroup;
   newAlternative: Alternative;
   currentGroup: Group;
+  correctAlternative: string;
+  show: boolean;
 
   constructor(private router: ActivatedRoute, private siteService: SiteService,
     private db: AngularFireDatabase) {
     this.newQuestion = new QuestionGroup()
     this.newAlternative = new Alternative()
     // this.currentGroup = new Group();
-
+    this.correctAlternative = ""
+    this.show = true;
   }
 
   ngOnInit() { 
@@ -53,6 +56,8 @@ export class CreateQuestionGroupComponent implements OnInit {
 
     if(this.newAlternative.text !== ""){
       this.newQuestion.alternative.push(this.newAlternative)
+      this.newQuestion.correctAlternative.text = this.correctAlternative
+      this.dontShow()
       this.newAlternative = new Alternative()
     }
    
@@ -66,8 +71,17 @@ export class CreateQuestionGroupComponent implements OnInit {
     this.currentGroup.questions.push(this.newQuestion)
     this.newQuestion = new QuestionGroup();
     this.siteService.update<Group>(ENTITIES.group, this.currentGroup.$key, this.currentGroup)  
-    
-    console.log(this.currentGroup)
+    this.showField()
   }
 
+  dontShow(){
+    if(this.correctAlternative !== ""){
+      this.show = false
+    }
+  }
+
+  showField(){
+    this.correctAlternative = "" 
+    this.show = true  
+  }
 }

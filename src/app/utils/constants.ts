@@ -27,5 +27,6 @@ export const SCORE = {
     incrementAnswer: 5,
     decrementQuestion: -10,
     decrementAnswer: -5,
-    minimumScoreUser: 0
+    minimumScoreUser: 0,
+    incrementQuestionGroup: 10
 }

@@ -1,32 +1,3 @@
-<!-- <div class="question-detail-container padd-on-top" >
-  <div *ngIf="!isLoading" class="card-panel">
-
-    <div class="question-detail-info">
-      <p class="question-title">Exercicios
-      
-      <div class="divider"></div>
-
-      <div class="divider"></div>      
-      
-      
-    </div>
-
-      <div class="answers">
-        <ul>
-          <ul *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" >
-              
-                {{ questions.title }}
-                <li *ngFor="let alternative of questions.alternative">
-                  {{alternative.text}}
-
-                </li>
-              <div class="divider"></div> 
-              </ul>
-        </ul>                     
-            </div>  
-    </div>
-</div> -->
-
 <nav class="light-blue lighten-1" role="navigation">
   <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
     <ul class="right hide-on-med-and-down">
@@ -61,21 +32,22 @@
   <div class="section">
     <div class="row">
 
-      <div *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" class="col s12 m12">
+      <div *ngFor="let questions of currentGroup.questions; let i = index" [attr.data-index]="i" 
+      class="col s12 m12">
         <div class="card-panel teal">
           <h4 class="grey-text text-darken-4">{{ questions.title }}</h4>
           <div class="divider"></div>
             <form action="#">
               <p *ngFor="let alternative of questions.alternative" class="with-gap">
-                <!-- <input name="alternatives" type="radio" value="{{ alternative.text }}" id="{{ alternative.text }}" /> -->
-                <input name="alternatives" type="radio" value="1" id="1"/>
-                <label class="grey-text text-darken-4" for="test1">{{ alternative.text }}</label>
+                <input name="alternatives" type="radio" value="1" id="1" />
+                <label class="grey-text text-darken-4" for="test1" 
+                    (click)="teste(questions, alternative.text)">{{ alternative.text }}</label>
               </p>
               
               <div class="row">
                 <button  class="btn waves-effect waves-light orange right"
-                type="submit" name="action">
-                <i class="material-icons right">send</i>Responder questão</button>
+                type="submit" name="action" (click)="answerQuestion()">
+                <i  class="material-icons right" >send</i>Responder questão</button>
               </div>
             </form>
         </div>
