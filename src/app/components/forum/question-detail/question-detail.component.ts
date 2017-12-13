@@ -35,6 +35,7 @@ export class QuestionDetailComponent implements OnInit {
   index: number;
   currentUser: User;
   usersLists = {}
+  views: number;
 
   constructor(private router: ActivatedRoute, private routerPage: Router,
      private siteService: SiteService, private db: AngularFireDatabase,
@@ -43,6 +44,7 @@ export class QuestionDetailComponent implements OnInit {
         this.currentQuestion = new Question();
         this.answer = new Answer();
         this.show = false;
+        this.views = this.generateRandomNumber();
   }
 
   ngOnInit() {
@@ -234,4 +236,12 @@ export class QuestionDetailComponent implements OnInit {
    
   }
 
+  generateRandomNumber() {
+    return Math.floor(Math.random() * 20);
+  }
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.routerPage.navigate([PAGES.login]));
+  }
 }
