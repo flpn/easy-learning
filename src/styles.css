@@ -1,14 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body {
+
+.custom-font {
   font-family: "Roboto", sans-serif !important;
-  letter-spacing: 2px;
-  line-height: 1.5;
-}
-
-.padd-on-top {
-  padding-top: 75px;
-} 
-
-.font-20 {
-  font-size: 20px;
 }
