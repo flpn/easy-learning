@@ -17,6 +17,7 @@ export class Group{
         this.subscribers = []
         this.requests = []
         this.questions = []
+        this.adm = new User()
         
     }
 
