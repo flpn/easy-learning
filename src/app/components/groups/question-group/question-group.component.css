@@ -1,3 +1,9 @@
 .teal {
     background-color: rgb(238, 238, 238) !important;    
 }
+
+.btn {
+    background-color: #61C4EF;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}

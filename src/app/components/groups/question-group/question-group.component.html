@@ -38,11 +38,9 @@
           <h4 class="grey-text text-darken-4">{{ questions.title }}</h4>
           <div class="divider"></div>
             <form action="#">
-              <p *ngFor="let alternative of questions.alternative" class="with-gap">
-                <input name="alternatives" type="radio" value="1" id="1" />
-                <label class="grey-text text-darken-4" for="test1" 
-                    (click)="teste(questions, alternative.text)">{{ alternative.text }}</label>
-              </p>
+              <div *ngFor="let alternative of questions.alternative">
+                <a class="waves-effect waves-light btn" (click)="teste(questions, alternative.text)">{{ alternative.text }}</a>
+                </div>
               
               <div class="row">
                 <button  class="btn waves-effect waves-light orange right"
