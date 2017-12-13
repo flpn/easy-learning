@@ -1,99 +1,101 @@
-<nav class="light-blue lighten-1" role="navigation">
-  <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
-    <ul class="right hide-on-med-and-down">
-      <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
-      <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
-      <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
-      <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
-    </ul>
+<div class="custom-font">
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="active"><a [routerLink]="['/forumHome']"><i class="material-icons left">forum</i>Fórum</a></li>
+        <li><a [routerLink]="['/groupsHome']"><i class="material-icons left">group</i>Grupos</a></li>
+        <li><a><i class="material-icons left">import_contacts</i>Exercícios</a></li>
+        <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+      </ul>
 
-    <ul id="nav-mobile" class="side-nav">
-      <li><a (click)="logout()">Sair</a></li>
-    </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
-
-<div class="section no-pad-bot" id="index-banner">
-  <div class="container">
-    <h2 class="header orange-text"><i class="material-icons medium left">forum</i>Perguntas</h2>
-    
-    <div class="row">
-      <div class="input-field col s6">
-        <form #findQuestionForm="ngForm" >
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" required [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
-          <label for="icon_prefix">Faça sua busca...</label>
-        </form>
-      </div>
-      <div class="input-field col s3">
-        <form>
-          <select>
-            <option value="" selected (click)="initializeList()">Visualização</option>
-            <option value="1" (click)="searchQuestionDate()">Data</option>
-            <option value="2" (click)="searchQuestion()">Tag/Nome</option>
-          </select>
-          <label>Filtro</label>
-        </form>
-      </div>
-      <div class="col s2">
-        <a (click)="goToCreateQuestion()" class="btn-floating btn-large waves-effect waves-light b right"><i class="material-icons">add</i></a>
-      </div>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a (click)="logout()">Sair</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
-  </div>
-</div>
+  </nav>
 
-<div class="container">
-  <div class="section">
-
-    <div *ngIf="isLoading" class="progress">
-      <div class="indeterminate"></div>
-    </div>
-    
-    <div class="row">
-      <div class="col s12" *ngFor="let question of latestQuestions | async">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">{{ question.title }}</span>
-            <p>{{ question.text }}</p>
-          </div>
-          <div class="card-action">
-            <a [routerLink]="['/question', question.$key]">Ir para pergunta</a>
-          </div>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h2 class="header orange-text"><i class="material-icons medium left">forum</i>Perguntas</h2>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <form #findQuestionForm="ngForm" >
+            <i class="material-icons prefix">search</i>
+            <input id="icon_prefix" required [(ngModel)]="searchQuestions" type="text" name="search" (keypress)="searchQuestion()">
+            <label for="icon_prefix">Faça sua busca...</label>
+          </form>
+        </div>
+        <div class="input-field col s3">
+          <form>
+            <select>
+              <option value="" selected (click)="initializeList()">Visualização</option>
+              <option value="1" (click)="searchQuestionDate()">Data</option>
+              <option value="2" (click)="searchQuestion()">Tag/Nome</option>
+            </select>
+            <label>Filtro</label>
+          </form>
+        </div>
+        <div class="col s2">
+          <a (click)="goToCreateQuestion()" class="btn-floating btn-large waves-effect waves-light b right"><i class="material-icons">add</i></a>
         </div>
       </div>
     </div>
-
   </div>
-  <br><br>
-</div>
 
-<footer class="page-footer orange">
   <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Quem somos nós?</h5>
-        <p class="grey-text text-lighten-4">Somos um time de estudantes que, assim como vocês, estamos procurando espalhar o conhecimento da melhor maneira possível :)</p>
+    <div class="section">
 
+      <div *ngIf="isLoading" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col s12" *ngFor="let question of latestQuestions | async">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{ question.title }}</span>
+              <p>{{ question.text }}</p>
+            </div>
+            <div class="card-action">
+              <a [routerLink]="['/question', question.$key]">Ir para pergunta</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Parceiros</h5>
-        <ul>
-          <li><a class="white-text" href="#!">Faculdade Nova Roma</a></li>
-        </ul>
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Código-fonte</h5>
-        <ul>
-          <li><a class="white-text" href="#!">Github</a></li>
-        </ul>
-      </div>
     </div>
+    <br><br>
   </div>
-  <div class="footer-copyright">
+
+  <footer class="page-footer orange">
     <div class="container">
-      Feito por <a class="orange-text text-lighten-3">Felipe Netto, Eduardo Andrade, Renato Bertolino, Mike Shinoda</a>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Quem somos nós?</h5>
+          <p class="grey-text text-lighten-4">Somos um time de estudantes que, assim como vocês, estamos procurando espalhar o conhecimento da melhor maneira possível :)</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Parceiros</h5>
+          <ul>
+            <li><a class="white-text" href="http://faculdadenovaroma.com.br/">Faculdade Nova Roma</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Código-fonte</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/flpn/easy-learning">Repositório no Github</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+    <div class="footer-copyright">
+      <div class="container">
+        Feito por <a class="orange-text text-lighten-3">Felipe Netto, Eduardo Andrade, Renato Bertolino, Mike Shinoda</a>
+      </div>
+    </div>
+  </footer>
+</div>
