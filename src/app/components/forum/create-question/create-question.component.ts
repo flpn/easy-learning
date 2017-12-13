@@ -38,4 +38,9 @@ export class CreateQuestionComponent implements OnInit {
   goToForumHome() {
     this.router.navigate([PAGES.forumHome])
   } 
+
+  logout() {
+    this.auth.auth.signOut()
+      .then(() => this.router.navigate([PAGES.login]));
+  }
 }
