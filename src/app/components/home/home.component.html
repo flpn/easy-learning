@@ -1,92 +1,94 @@
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
-      </ul>
+<div class="custom-font">
+  <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a [routerLink]="['/home']" id="logo-container" class="brand-logo"><i class="material-icons">book</i>Easy Learning</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a (click)="logout()"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+        </ul>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a (click)="logout()">Sair</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Easy Learning</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Grupos de estudos, vídeos, fórum, exercícios e muito mais.</h5>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a (click)="logout()">Sair</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
-      <br><br>
-
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div [routerLink]="['/forumHome']" class="col s12 m4 route">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">forum</i></h2>
-            <h5 class="center">Fórum</h5>
-
-            <p class="light">O nosso fórum é o lugar certo para tirar dúvidas, seja pesquisando ou perguntando.</p>
-            <p class="light">Ajude outros usuários respondendo suas perguntas, além de contribuir com a comunidade você ainda ganha pontos por isso!</p>
-          </div>
-        </div>
-
-        <div [routerLink]="['/groupsHome']" class="col s12 m4 route">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Grupos de Estudo</h5>
-
-            <p class="light">Os grupos de estudo são os locais perfeitos para você e seus amigos compartilharem links, matérias, debater sobre determinados assuntos, e etc.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">import_contacts</i></h2>
-            <h5 class="center">Exercícios</h5>
-
-            <p class="light">Caso queira exercitar um pouco, venha para a aba de exercícios. Aqui você encontrará desafios dos mais variados temas.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Quem somos nós?</h5>
-          <p class="grey-text text-lighten-4">Somos um time de estudantes que, assim como vocês, estamos procurando espalhar o conhecimento da melhor maneira possível :)</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Parceiros</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Faculdade Nova Roma</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Código-fonte</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Github</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
       <div class="container">
-        Feito por <a class="orange-text text-lighten-3">Felipe Netto, Eduardo Andrade, Renato Bertolino, Mike Shinoda</a>
+        <br><br>
+        <h1 class="header center orange-text">Easy Learning</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Grupos de estudos, vídeos, fórum, exercícios e muito mais.</h5>
+        </div>
+        <br><br>
+
       </div>
     </div>
-</footer>
+
+
+    <div class="container">
+      <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+          <div [routerLink]="['/forumHome']" class="col s12 m4 route">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">forum</i></h2>
+              <h5 class="center">Fórum</h5>
+
+              <p class="light">O nosso fórum é o lugar certo para tirar dúvidas, seja pesquisando ou perguntando.</p>
+              <p class="light">Ajude outros usuários respondendo suas perguntas, além de contribuir com a comunidade você ainda ganha pontos por isso!</p>
+            </div>
+          </div>
+
+          <div [routerLink]="['/groupsHome']" class="col s12 m4 route">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+              <h5 class="center">Grupos de Estudo</h5>
+
+              <p class="light">Os grupos de estudo são os locais perfeitos para você e seus amigos compartilharem links, matérias, debater sobre determinados assuntos, e etc.</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">import_contacts</i></h2>
+              <h5 class="center">Exercícios</h5>
+
+              <p class="light">Caso queira exercitar um pouco, venha para a aba de exercícios. Aqui você encontrará desafios dos mais variados temas.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br><br>
+    </div>
+
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Quem somos nós?</h5>
+            <p class="grey-text text-lighten-4">Somos um time de estudantes que, assim como vocês, estamos procurando espalhar o conhecimento da melhor maneira possível :)</p>
+
+
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Parceiros</h5>
+            <ul>
+              <li><a class="white-text" href="#!">Faculdade Nova Roma</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Código-fonte</h5>
+            <ul>
+              <li><a class="white-text" href="#!">Github</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          Feito por <a class="orange-text text-lighten-3">Felipe Netto, Eduardo Andrade, Renato Bertolino, Mike Shinoda</a>
+        </div>
+      </div>
+  </footer>
+</div>
