@@ -84,14 +84,14 @@
             
             <div class="row padd" *ngIf="checkUser(answer.user)">
               <br>
-              <label (click)="edit(answer)"><a>editar</a></label>
-              <label (click)="removeAnswer(answer)"><a>excluir</a></label>
+              <label class="curs" (click)="edit(answer)"><a>editar</a></label>
+              <label class="curs" (click)="removeAnswer(answer)"><a>excluir</a></label>
             </div>
             
             <div class="row padd" *ngIf="!checkUser(answer.user)">
               <br>
-              <label style="color: white;">editar</label>
-              <label style="color: white;">exluir</label>
+              <label class="curs" style="color: white;">editar</label>
+              <label class="curs" style="color: white;">exluir</label>
             </div>
 
             <div *ngIf="(i === index) && show">

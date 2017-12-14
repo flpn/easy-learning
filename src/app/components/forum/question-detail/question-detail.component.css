@@ -12,3 +12,7 @@
     border-radius: 5px;
     border-color: #29B6F6;
 }
+
+.curs {
+    cursor: pointer;
+}
