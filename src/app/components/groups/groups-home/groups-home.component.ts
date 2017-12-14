@@ -55,9 +55,6 @@ export class GroupsHomeComponent implements OnInit {
             if(group.requests.filter(user => user.uid === this.currentUser.uid).length == 0){
               this.currentGroup.requests.push(this.currentUser)
               this.siteService.update(ENTITIES.group, key, this.currentGroup)  
-              console.log("solicitação enviada")              
-            }else{
-              alert("aguarde confirmação")
             }
           } 
         })
