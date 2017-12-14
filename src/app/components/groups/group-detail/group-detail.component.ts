@@ -81,6 +81,7 @@ export class GroupDetailComponent implements OnInit {
     this.newPost.user = this.currentUser;   
     this.currentGroup.groupPosts.push(this.newPost);
     this.siteService.update<Group>(ENTITIES.group, this.currentGroup.$key, this.currentGroup)
+    this.newPost = new GroupPosts();
    }
 
   checkUser(userKey: string): boolean {

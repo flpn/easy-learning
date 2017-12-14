@@ -13,7 +13,7 @@ import { CreateQuestionGroupComponent } from './components/groups/create-questio
 import { QuestionGroupComponent } from './components/groups/question-group/question-group.component';
 
 export const ROUTES: Routes = [
-    { path: '', redirectTo: 'groupsHome', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signUp', component: SignUpComponent },
     { path: 'home', component: HomeComponent },
