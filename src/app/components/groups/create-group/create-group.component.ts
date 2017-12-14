@@ -37,8 +37,6 @@ export class CreateGroupComponent implements OnInit {
     this.newGroup.subscribers.push(this.currentUser)
      this.siteService.createGroup(this.newGroup)
      this.goToGroupHome();
-    console.log(this.currentUser.name)
-    // this.afDatabase.list("groups").push(this.newGroup)
   }
 
   goToGroupHome() {
