@@ -40,9 +40,7 @@ export class GroupsHomeComponent implements OnInit {
   }
 
   createGroup(){
-    this.router.navigate([PAGES.createGroup])
-    console.log(this.currentGroup.subscribers.includes(this.currentUser))
-    
+    this.router.navigate([PAGES.createGroup])    
   }
 
   subscribe(key: string){
