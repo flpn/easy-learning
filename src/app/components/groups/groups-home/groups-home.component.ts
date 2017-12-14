@@ -60,7 +60,7 @@ export class GroupsHomeComponent implements OnInit {
         })
       )
 
-      console.log('Aguardando confirmação.')
+      alert('Aguardando confirmação.')
     }
 
   getUser() {
