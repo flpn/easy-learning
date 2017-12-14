@@ -59,6 +59,8 @@ export class GroupsHomeComponent implements OnInit {
           } 
         })
       )
+
+      console.log('Aguardando confirmação.')
     }
 
   getUser() {
